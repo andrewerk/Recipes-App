@@ -3,7 +3,7 @@ import { object } from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import RecipeCard from '../components/RecipeCard';
 
-function ExploreByNationality() {
+function ExploreByNationality(props) {
   const [value, setValue] = useState('American');
   const { data } = useFetch('meal', 'list', '?a=', 'list');
   const { data: meals } = useFetch('meal', 'filter', '?a=', value);
@@ -31,11 +31,13 @@ function ExploreByNationality() {
       {meals
         && meals.meals.slice(0, maxIngredients).map((meal, index) => (
           <RecipeCard
+            { ...props }
             type="meal"
             key={ meal.strMeal }
             name={ meal.strMeal }
             imgSrc={ meal.strMealThumb }
             index={ index }
+            id={ meal.idMeal }
           />
         ))}
     </div>

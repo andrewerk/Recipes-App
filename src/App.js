@@ -29,15 +29,15 @@ function App() {
             ) }
           />
           <Route
-            path="/foods"
+            path="/foods/:id/in-progress"
             render={ (props) => (
-              <Foods { ...props } />
+              <FoodInProgress { ...props } />
             ) }
           />
           <Route
-            path="/drinks"
+            path="/drink/:id/in-progress"
             render={ (props) => (
-              <Drinks { ...props } />
+              <DrinkInProgress { ...props } />
             ) }
           />
           <Route
@@ -49,19 +49,19 @@ function App() {
           <Route
             path="/drink/:id"
             render={ (props) => (
-              <DrinkDetail { ...props } />
+              <FoodDetail { ...props } />
             ) }
           />
           <Route
-            path="/foods/:id/in-progress"
+            path="/foods"
             render={ (props) => (
-              <FoodInProgress { ...props } />
+              <Foods { ...props } />
             ) }
           />
           <Route
-            path="/drink/:id/in-progress"
+            path="/drinks"
             render={ (props) => (
-              <DrinkInProgress { ...props } />
+              <Drinks { ...props } />
             ) }
           />
           <Route
