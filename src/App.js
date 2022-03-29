@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
+import ExploreByIngredients from './pages/ExploreByIngredients';
+import Explore from './pages/Explore';
+import Foods from './pages/Foods';
 
 function App() {
   return (
@@ -16,13 +19,14 @@ function App() {
               <Login { ...props } />
             ) }
           />
-          {/* <Route
-          exact
-          path="/foods"
-          render={ (props) => (
-            <Foods { ...props } />
-          ) }
-        />
+          <Route
+            exact
+            path="/foods"
+            render={ (props) => (
+              <Foods { ...props } />
+            ) }
+          />
+          {/*
         <Route
           exact
           path="/drinks"
@@ -57,42 +61,27 @@ function App() {
           render={ (props) => (
             <DrinkInProgress { ...props } />
           ) }
-        />
-        <Route
-          exact
-          path="/explore"
-          render={ (props) => (
-            <Explore { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/explore/foods"
-          render={ (props) => (
-            <ExploreFoods { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/explore/drinks"
-          render={ (props) => (
-            <ExploreDrinks { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/explore/foods/ingredients"
-          render={ (props) => (
-            <ExploreFoodByIngredients { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/explore/drinks/ingredients"
-          render={ (props) => (
-            <ExploreDrinkByIngredients { ...props } />
-          ) }
-        />
+          /> */}
+          <Route
+            path="/explore/foods/ingredients"
+            render={ (props) => (
+              <ExploreByIngredients { ...props } />
+            ) }
+          />
+          <Route
+            exact
+            path="/explore/drinks/ingredients"
+            render={ (props) => (
+              <ExploreByIngredients { ...props } />
+            ) }
+          />
+          <Route
+            path="/explore"
+            render={ (props) => (
+              <Explore { ...props } />
+            ) }
+          />
+          {/*
         <Route
           exact
           path="/explore/foods/nationalities"
