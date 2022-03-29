@@ -30,7 +30,8 @@ function Login(props) {
     });
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     const { history } = props;
     const user = {
       email,
@@ -64,7 +65,7 @@ function Login(props) {
       <button
         type="submit"
         data-testid="login-submit-btn"
-        onClick={ () => handleClick() }
+        onClick={ (e) => handleClick(e) }
         disabled={ isDisable }
       >
         Enter
