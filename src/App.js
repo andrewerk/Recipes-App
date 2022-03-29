@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import ExploreByIngredients from './pages/ExploreByIngredients';
 import Explore from './pages/Explore';
 import Foods from './pages/Foods';
+import ExploreByNationality from './pages/ExploreByNationality';
 
 function App() {
   return (
@@ -76,19 +77,19 @@ function App() {
             ) }
           />
           <Route
+            exact
+            path="/explore/foods/nationalities"
+            render={ (props) => (
+              <ExploreByNationality { ...props } />
+            ) }
+          />
+          <Route
             path="/explore"
             render={ (props) => (
               <Explore { ...props } />
             ) }
           />
           {/*
-        <Route
-          exact
-          path="/explore/foods/nationalities"
-          render={ (props) => (
-            <ExploreFoodByNation { ...props } />
-          ) }
-        />
         <Route
           exact
           path="/profile"
