@@ -11,7 +11,7 @@ import FoodInProgress from './pages/FoodInProgress';
 import DrinkInProgress from './pages/DrinkInProgress';
 import ExploreByIngredients from './pages/ExploreByIngredients';
 import Explore from './pages/Explore';
-import ExploreFoodByNation from './pages/ExploreFoodByNation';
+import ExploreByNationality from './pages/ExploreByNationality';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import Favorites from './pages/Favorites';
@@ -77,9 +77,10 @@ function App() {
             ) }
           />
           <Route
+            exact
             path="/explore/foods/nationalities"
             render={ (props) => (
-              <ExploreFoodByNation { ...props } />
+              <ExploreByNationality { ...props } />
             ) }
           />
           <Route
