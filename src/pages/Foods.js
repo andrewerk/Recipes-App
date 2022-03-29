@@ -5,15 +5,15 @@ import Header from '../components/Header';
 function Foods({ history }) {
   return (
     <div>
+      <div>
+        <Header title="Foods" />
+      </div>
       <button
         type="button"
         onClick={ () => history.push('/explore') }
       >
         Explore
       </button>
-      <div>
-        <Header title="Foods" />
-      </div>
     </div>
   );
 }

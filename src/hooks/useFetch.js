@@ -7,6 +7,11 @@ const useFetch = (type, displayType, prop, input) => {
   const [url, setUrl] = useState('');
 
   useEffect(() => {
+    // type deve ser "meal" ou "cocktail"
+    // displayType deve ser "filter", ou "list", ou lookup(detalhes) ou random
+    // prop deve ser empre "?{algumaLetra}="
+    // input deve ser o de pesquisa
+    // input e prop podem ser '' dependendo do caso
     if (!(type && displayType && prop && input)) {
       return;
     }
