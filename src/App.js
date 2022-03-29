@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
 
 function App() {
   return (
@@ -18,13 +19,12 @@ function App() {
             ) }
           />
           <Route
-            exact
             path="/foods"
             render={ (props) => (
               <Foods { ...props } />
             ) }
           />
-          {/* <Route
+          <Route
             exact
             path="/drinks"
             render={ (props) => (
