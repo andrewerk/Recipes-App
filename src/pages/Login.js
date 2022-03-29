@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { object } from 'prop-types';
 
-function Login() {
+function Login(props) {
   const INITIAL_STATE = {
     email: '',
     pass: '',
@@ -29,7 +30,17 @@ function Login() {
     });
   };
 
-  const handleClick = () => console.log('handleClick');
+  const handleClick = () => {
+    const { history } = props;
+    const user = {
+      email,
+    };
+    console.log('click');
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', JSON.stringify(user));
+    history.push('/foods');
+  };
 
   return (
     <>
@@ -64,3 +75,7 @@ function Login() {
 }
 
 export default Login;
+
+Login.propTypes = {
+  history: object,
+}.isRequired;

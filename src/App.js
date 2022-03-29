@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
+import Foods from './pages/Foods';
 
 function App() {
   return (
@@ -16,13 +17,14 @@ function App() {
               <Login { ...props } />
             ) }
           />
-          {/* <Route
-          exact
-          path="/foods"
-          render={ (props) => (
-            <Foods { ...props } />
-          ) }
-        />
+          <Route
+            exact
+            path="/foods"
+            render={ (props) => (
+              <Foods { ...props } />
+            ) }
+          />
+          {/*
         <Route
           exact
           path="/drinks"
