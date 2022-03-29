@@ -3,9 +3,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import RecipesProvider from './context/RecipesProvider';
 import Login from './pages/Login';
+import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
+import FoodDetail from './pages/FoodDetail';
+import DrinkDetail from './pages/DrinkDetail';
+import FoodInProgress from './pages/FoodInProgress';
+import DrinkInProgress from './pages/DrinkInProgress';
 import ExploreByIngredients from './pages/ExploreByIngredients';
 import Explore from './pages/Explore';
-import Foods from './pages/Foods';
+import ExploreFoodByNation from './pages/ExploreFoodByNation';
+import Profile from './pages/Profile';
+import DoneRecipes from './pages/DoneRecipes';
+import Favorites from './pages/Favorites';
 
 function App() {
   return (
@@ -20,48 +29,41 @@ function App() {
             ) }
           />
           <Route
-            exact
             path="/foods"
             render={ (props) => (
               <Foods { ...props } />
             ) }
           />
-          {/*
-        <Route
-          exact
-          path="/drinks"
-          render={ (props) => (
-            <Drinks { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/foods/:id"
-          render={ (props) => (
-            <FoodDetail { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/drink/:id"
-          render={ (props) => (
-            <DrinkDetail { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/foods/:id/in-progress"
-          render={ (props) => (
-            <FoodInProgress { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/drink/:id/in-progress"
-          render={ (props) => (
-            <DrinkInProgress { ...props } />
-          ) }
-          /> */}
+          <Route
+            path="/drinks"
+            render={ (props) => (
+              <Drinks { ...props } />
+            ) }
+          />
+          <Route
+            path="/foods/:id"
+            render={ (props) => (
+              <FoodDetail { ...props } />
+            ) }
+          />
+          <Route
+            path="/drink/:id"
+            render={ (props) => (
+              <DrinkDetail { ...props } />
+            ) }
+          />
+          <Route
+            path="/foods/:id/in-progress"
+            render={ (props) => (
+              <FoodInProgress { ...props } />
+            ) }
+          />
+          <Route
+            path="/drink/:id/in-progress"
+            render={ (props) => (
+              <DrinkInProgress { ...props } />
+            ) }
+          />
           <Route
             path="/explore/foods/ingredients"
             render={ (props) => (
@@ -69,10 +71,15 @@ function App() {
             ) }
           />
           <Route
-            exact
             path="/explore/drinks/ingredients"
             render={ (props) => (
               <ExploreByIngredients { ...props } />
+            ) }
+          />
+          <Route
+            path="/explore/foods/nationalities"
+            render={ (props) => (
+              <ExploreFoodByNation { ...props } />
             ) }
           />
           <Route
@@ -81,35 +88,24 @@ function App() {
               <Explore { ...props } />
             ) }
           />
-          {/*
-        <Route
-          exact
-          path="/explore/foods/nationalities"
-          render={ (props) => (
-            <ExploreFoodByNation { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/profile"
-          render={ (props) => (
-            <Profile { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/done-recipes"
-          render={ (props) => (
-            <DoneRecipes { ...props } />
-          ) }
-        />
-        <Route
-          exact
-          path="/favorite-recipes"
-          render={ (props) => (
-            <Favorites { ...props } />
-          ) }
-        /> */}
+          <Route
+            path="/profile"
+            render={ (props) => (
+              <Profile { ...props } />
+            ) }
+          />
+          <Route
+            path="/done-recipes"
+            render={ (props) => (
+              <DoneRecipes { ...props } />
+            ) }
+          />
+          <Route
+            path="/favorite-recipes"
+            render={ (props) => (
+              <Favorites { ...props } />
+            ) }
+          />
         </Switch>
       </RecipesProvider>
     </BrowserRouter>

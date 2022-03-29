@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { object } from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import IngredientCard from '../components/IngredientCard';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 function ExploreByIngredients({ location }) {
   const [type, setType] = useState('');
@@ -23,6 +24,7 @@ function ExploreByIngredients({ location }) {
   const maxIngredients = 12;
   return (
     <div>
+      <HeaderWithoutSearch title="Explore Ingredients" />
       {data
         && data[objKey].slice(0, maxIngredients).map((ingredient, index) => (
           <IngredientCard

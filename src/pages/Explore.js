@@ -1,5 +1,6 @@
 import React from 'react';
 import { object } from 'prop-types';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 function Explore({ history, location }) {
   const handleClick = (newUrl) => {
@@ -13,6 +14,7 @@ function Explore({ history, location }) {
       { pathname === '/explore'
     && (
       <section>
+        <HeaderWithoutSearch title="Explore" />
         <button
           onClick={ () => handleClick(exploreFoods) }
           type="button"
@@ -32,6 +34,11 @@ function Explore({ history, location }) {
       { (pathname === exploreFoods || pathname === exploreDrinks)
     && (
       <section>
+        <HeaderWithoutSearch
+          title={
+            pathname === exploreFoods ? 'Explore Foods' : 'Explore Drinks'
+          }
+        />
         <button
           onClick={ () => handleClick(`${pathname}/ingredients`) }
           type="button"
