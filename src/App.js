@@ -77,16 +77,15 @@ function App() {
             ) }
           />
           <Route
-            exact
-            path="/explore"
-            render={ (props) => (
-              <Explore { ...props } />
-            ) }
-          />
-          <Route
             path="/explore/foods/nationalities"
             render={ (props) => (
               <ExploreFoodByNation { ...props } />
+            ) }
+          />
+          <Route
+            path="/explore"
+            render={ (props) => (
+              <Explore { ...props } />
             ) }
           />
           <Route
