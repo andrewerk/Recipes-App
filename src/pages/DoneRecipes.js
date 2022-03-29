@@ -1,9 +1,10 @@
 import React from 'react';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 function DoneRecipes() {
   return (
     <div>
-      <p>Done Recipes</p>
+      <HeaderWithoutSearch title="Done Recipes" />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 function Favorites() {
   return (
     <div>
-      <p>Favorites</p>
+      <HeaderWithoutSearch title="Favorite Recipes" />
     </div>
   );
 }
