@@ -9,6 +9,12 @@ import FoodDetail from './pages/FoodDetail';
 import DrinkDetail from './pages/DrinkDetail';
 import FoodInProgress from './pages/FoodInProgress';
 import DrinkInProgress from './pages/DrinkInProgress';
+import ExploreByIngredients from './pages/ExploreByIngredients';
+import Explore from './pages/Explore';
+import ExploreFoodByNation from './pages/ExploreFoodByNation';
+import Profile from './pages/Profile';
+import DoneRecipes from './pages/DoneRecipes';
+import Favorites from './pages/Favorites';
 
 function App() {
   return (
@@ -59,33 +65,22 @@ function App() {
             ) }
           />
           <Route
-            path="/explore"
-            render={ (props) => (
-              <Explore { ...props } />
-            ) }
-          />
-          <Route
-            path="/explore/foods"
-            render={ (props) => (
-              <ExploreFoods { ...props } />
-            ) }
-          />
-          <Route
-            path="/explore/drinks"
-            render={ (props) => (
-              <ExploreDrinks { ...props } />
-            ) }
-          />
-          <Route
             path="/explore/foods/ingredients"
             render={ (props) => (
-              <ExploreFoodByIngredients { ...props } />
+              <ExploreByIngredients { ...props } />
             ) }
           />
           <Route
             path="/explore/drinks/ingredients"
             render={ (props) => (
-              <ExploreDrinkByIngredients { ...props } />
+              <ExploreByIngredients { ...props } />
+            ) }
+          />
+          <Route
+            exact
+            path="/explore"
+            render={ (props) => (
+              <Explore { ...props } />
             ) }
           />
           <Route
