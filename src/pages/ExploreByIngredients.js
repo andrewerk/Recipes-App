@@ -3,6 +3,7 @@ import { object } from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import IngredientCard from '../components/IngredientCard';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import Footer from '../components/Footer';
 
 function ExploreByIngredients({ location }) {
   const [type, setType] = useState('');
@@ -34,6 +35,7 @@ function ExploreByIngredients({ location }) {
             index={ index }
           />
         ))}
+      <Footer />
     </div>
   );
 }

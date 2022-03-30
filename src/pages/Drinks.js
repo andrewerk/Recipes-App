@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import RecipesContext from '../context/RecipesContext';
@@ -37,6 +38,7 @@ function Drinks(props) {
             id={ recipe.idDrink }
             type="drinks"
           />)))}
+      <Footer />
     </div>
   );
 }

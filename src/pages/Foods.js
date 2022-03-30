@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import RecipesContext from '../context/RecipesContext';
 import RecipeCard from '../components/RecipeCard';
+import Footer from '../components/Footer';
 
 const phrase = 'Sorry, we haven\'t found any recipes for these filters.';
 
@@ -37,6 +38,7 @@ function Foods(props) {
             id={ recipe.idMeal }
             type="foods"
           />)))}
+      <Footer />
     </div>
   );
 }
