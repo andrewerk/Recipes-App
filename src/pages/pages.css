@@ -1,0 +1,12 @@
+.recipe-list {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 320px;
+}
+
+.area-filter {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}

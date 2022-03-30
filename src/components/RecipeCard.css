@@ -1,0 +1,9 @@
+.recipe-card {
+  background-color: cornsilk;
+  border-width: thick;
+  width: 150px;
+}
+
+.recipe-image {
+  width: 100px;
+}

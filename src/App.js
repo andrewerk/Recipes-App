@@ -6,7 +6,6 @@ import Login from './pages/Login';
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
 import FoodDetail from './pages/FoodDetail';
-import DrinkDetail from './pages/DrinkDetail';
 import FoodInProgress from './pages/FoodInProgress';
 import DrinkInProgress from './pages/DrinkInProgress';
 import ExploreByIngredients from './pages/ExploreByIngredients';
@@ -29,30 +28,6 @@ function App() {
             ) }
           />
           <Route
-            path="/foods"
-            render={ (props) => (
-              <Foods { ...props } />
-            ) }
-          />
-          <Route
-            path="/drinks"
-            render={ (props) => (
-              <Drinks { ...props } />
-            ) }
-          />
-          <Route
-            path="/foods/:id"
-            render={ (props) => (
-              <FoodDetail { ...props } />
-            ) }
-          />
-          <Route
-            path="/drink/:id"
-            render={ (props) => (
-              <DrinkDetail { ...props } />
-            ) }
-          />
-          <Route
             path="/foods/:id/in-progress"
             render={ (props) => (
               <FoodInProgress { ...props } />
@@ -62,6 +37,30 @@ function App() {
             path="/drink/:id/in-progress"
             render={ (props) => (
               <DrinkInProgress { ...props } />
+            ) }
+          />
+          <Route
+            path="/foods/:id"
+            render={ (props) => (
+              <FoodDetail { ...props } />
+            ) }
+          />
+          <Route
+            path="/drinks/:id"
+            render={ (props) => (
+              <FoodDetail { ...props } />
+            ) }
+          />
+          <Route
+            path="/foods"
+            render={ (props) => (
+              <Foods { ...props } />
+            ) }
+          />
+          <Route
+            path="/drinks"
+            render={ (props) => (
+              <Drinks { ...props } />
             ) }
           />
           <Route
@@ -79,6 +78,13 @@ function App() {
           <Route
             exact
             path="/explore/foods/nationalities"
+            render={ (props) => (
+              <ExploreByNationality { ...props } />
+            ) }
+          />
+          <Route
+            exact
+            path="/explore/drinks/nationalities"
             render={ (props) => (
               <ExploreByNationality { ...props } />
             ) }

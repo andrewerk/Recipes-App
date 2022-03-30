@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { object } from 'prop-types';
+import useFetch from '../hooks/useFetch';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 function Explore({ history, location }) {
+  const [type, setType] = useState({});
   const handleClick = (newUrl) => {
     history.push(newUrl);
+  };
+  useEffect(() => {
+    setType(location.pathname.includes('foods')
+      ? { type: 'meal', objKey: 'meals' }
+      : { type: 'cocktail', objKey: 'drinks' });
+  }, [location]);
+  const { data } = useFetch(type.type, 'random', '', '');
+  useEffect(() => { console.log(data); }, [data]);
+  const handleClickRandom = () => {
+    if (type.type === 'meal') history.push(`/foods/${data[type.objKey][0].idMeal}`);
+    if (type.type === 'cocktail') history.push(`/drinks/${data[type.objKey][0].idDrink}`);
   };
   const exploreFoods = '/explore/foods';
   const exploreDrinks = '/explore/drinks';
@@ -57,10 +70,7 @@ function Explore({ history, location }) {
           </button>
         )}
         <button
-          onClick={ () => handleClick(
-            `${pathname === exploreFoods
-              ? '/foods/:id' : '/drinks/:id'}`,
-          ) }
+          onClick={ handleClickRandom }
           type="button"
           data-testid="explore-surprise"
         >

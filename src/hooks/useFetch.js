@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = (type, displayType, prop, input) => {
+const useFetch = (type, displayType, prop = '', input = '') => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorState, setErrorState] = useState('');
@@ -12,7 +12,7 @@ const useFetch = (type, displayType, prop, input) => {
     // prop deve ser empre "?{algumaLetra}="
     // input deve ser o de pesquisa
     // input e prop podem ser '' dependendo do caso
-    if (!(type && displayType && prop && input)) {
+    if (!(type && displayType)) {
       return;
     }
     (async () => {

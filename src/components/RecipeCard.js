@@ -1,27 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, number, object } from 'prop-types';
+import './RecipeCard.css';
 
-function IngredientCard({ name, index, imgSrc }) {
+function RecipeCard({ name, index, imgSrc, id, history }) {
   return (
-    <div data-testid={ `${index}-ingredient-card` }>
-      <img
-        src={ imgSrc }
-        alt="ingredient-foto"
-        data-testid={ `${index}-card-img` }
-      />
-      <p
-        data-testid={ `${index}-card-name` }
+    <div data-testid={ `${index}-recipe-card` } className="recipe-card">
+      <button
+        type="button"
+        onClick={ () => history.push(`/foods/${id}`) }
       >
-        { name }
-      </p>
+        Detail
+        <img
+          src={ imgSrc }
+          alt="recipe"
+          data-testid={ `${index}-card-img` }
+          className="recipe-image"
+        />
+        <p
+          data-testid={ `${index}-card-name` }
+        >
+          { name }
+        </p>
+      </button>
+
     </div>
   );
 }
 
-IngredientCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  imgSrc: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-};
+RecipeCard.propTypes = {
+  name: string,
+  imgSrc: string,
+  index: number,
+  history: object,
+}.isRequired;
 
-export default IngredientCard;
+export default RecipeCard;
