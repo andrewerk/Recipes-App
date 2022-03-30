@@ -4,6 +4,7 @@ import useFetch from '../hooks/useFetch';
 import RecipeCard from '../components/RecipeCard';
 import Header from '../components/Header';
 import './pages.css';
+import Footer from '../components/Footer';
 
 function ExploreByNationality(props) {
   const [value, setValue] = useState('All');
@@ -62,6 +63,7 @@ function ExploreByNationality(props) {
         ))}
             </div>
           </>) }
+      <Footer />
     </div>
   );
 }
