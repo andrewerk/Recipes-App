@@ -46,7 +46,7 @@ function App() {
             ) }
           />
           <Route
-            path="/drink/:id"
+            path="/drinks/:id"
             render={ (props) => (
               <FoodDetail { ...props } />
             ) }
@@ -78,6 +78,13 @@ function App() {
           <Route
             exact
             path="/explore/foods/nationalities"
+            render={ (props) => (
+              <ExploreByNationality { ...props } />
+            ) }
+          />
+          <Route
+            exact
+            path="/explore/drinks/nationalities"
             render={ (props) => (
               <ExploreByNationality { ...props } />
             ) }
