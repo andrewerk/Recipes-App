@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { object } from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import Footer from '../components/Footer';
 
 function Explore({ history, location }) {
   const [type, setType] = useState({});
@@ -78,6 +79,7 @@ function Explore({ history, location }) {
         </button>
       </section>
     )}
+      <Footer />
     </div>
   );
 }
