@@ -2,12 +2,12 @@ import React from 'react';
 import { string, number, object } from 'prop-types';
 import './RecipeCard.css';
 
-function RecipeCard({ name, index, imgSrc, id, history }) {
+function RecipeCard({ name, index, imgSrc, id, history, type }) {
   return (
     <div data-testid={ `${index}-recipe-card` } className="recipe-card">
       <button
         type="button"
-        onClick={ () => history.push(`/foods/${id}`) }
+        onClick={ () => history.push(`/${type}/${id}`) }
       >
         Detail
         <img

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Footer from '../components/Footer';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import ButtonComponent from '../components/ButtonComponent';
 
 function Profile({ history }) {
   const [{ email }] = useLocalStorage('user', '');

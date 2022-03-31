@@ -34,7 +34,7 @@ function App() {
             ) }
           />
           <Route
-            path="/drink/:id/in-progress"
+            path="/drinks/:id/in-progress"
             render={ (props) => (
               <DrinkInProgress { ...props } />
             ) }

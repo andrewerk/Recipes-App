@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import RecipesContext from '../context/RecipesContext';
 import '../css/Footer.css';
 
 import drinkIcon from '../images/drinkIcon.svg';
@@ -8,6 +9,20 @@ import mealIcon from '../images/mealIcon.svg';
 
 function Footer() {
   const history = useHistory();
+  const {
+    setSearchBar,
+    setRedirected,
+  } = useContext(RecipesContext);
+  const clickMeal = () => {
+    setSearchBar(false);
+    setRedirected(false);
+    history.push('/foods');
+  };
+  const clickCocktail = () => {
+    setSearchBar(false);
+    setRedirected(false);
+    history.push('/drinks');
+  };
   return (
     <footer data-testid="footer">
       <input
@@ -16,7 +31,7 @@ function Footer() {
         type="image"
         src={ drinkIcon }
         alt="drink icon"
-        onClick={ () => history.push('/drinks') }
+        onClick={ clickCocktail }
       />
       <input
         data-testid="explore-bottom-btn"
@@ -30,7 +45,7 @@ function Footer() {
         type="image"
         src={ mealIcon }
         alt="meal icon"
-        onClick={ () => history.push('/foods') }
+        onClick={ clickMeal }
       />
     </footer>
   );
