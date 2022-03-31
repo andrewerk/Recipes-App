@@ -9,8 +9,8 @@ function FoodDetail({ location, match: { params: { id } } }) {
   const [recommendType, setRecommendType] = useState('');
 
   useEffect(() => {
-    console.log('useeffect');
     const { pathname } = location;
+    console.log(pathname);
     if (pathname.includes('foods')) {
       setType('meal');
       setRecommendType('cocktail');

@@ -4,6 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import RecomendationCard from './RecomendationCard';
 import '../css/MealDetail.css';
 import BtnStartRecipe from './BtnStartRecipe';
+import ShareAndFavorite from './ShareAndFavorite';
 
 function MealDetail({ meal, recommended }) {
   const [ingredients, setIngredients] = useState([]);
@@ -60,18 +61,7 @@ function MealDetail({ meal, recommended }) {
             >
               {e.strMeal}
             </h1>
-            <button
-              type="button"
-              data-testid="share-btn"
-            >
-              share
-            </button>
-            <button
-              type="button"
-              data-testid="favorite-btn"
-            >
-              favorite
-            </button>
+            <ShareAndFavorite />
           </div>
           <p
             data-testid="recipe-category"
