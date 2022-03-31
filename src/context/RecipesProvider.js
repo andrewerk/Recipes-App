@@ -9,6 +9,7 @@ function RecipesProvider({ children }) {
   const [propSearch, setPropSearch] = useState('');
   const [inputSearch, setInputSearch] = useState('');
   const [searchBar, setSearchBar] = useState(false);
+  const [redirected, setRedirected] = useState(false);
   const { data, isLoading, errorState } = useFetch(
     typeSearch, typeDisplaySearch, propSearch, inputSearch,
   );
@@ -25,6 +26,8 @@ function RecipesProvider({ children }) {
         setInputSearch,
         setSearchBar,
         setSearchResult,
+        setRedirected,
+        redirected,
         errorState,
         isLoading,
         searchBar,

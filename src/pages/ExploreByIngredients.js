@@ -16,6 +16,7 @@ function ExploreByIngredients({ location }) {
     setTypeDisplaySearch,
     setPropSearch,
     setInputSearch,
+    setRedirected,
   } = useContext(RecipesContext);
   const { pathname } = location;
   const history = useHistory();
@@ -34,6 +35,7 @@ function ExploreByIngredients({ location }) {
   const maxIngredients = 12;
   const handleClick = (ingredient) => {
     setTypeSearch(type);
+    setRedirected(true);
     setTypeDisplaySearch('filter');
     setPropSearch('?i=');
     setInputSearch(ingredient);

@@ -16,19 +16,21 @@ function Foods(props) {
     setTypeDisplaySearch,
     setPropSearch,
     setInputSearch,
+    redirected,
     // errorState,
     // setSearchResult,
     searchBar } = useContext(RecipesContext);
   const history = useHistory();
   const maxIngredients = 12;
   useEffect(() => {
-    setTypeSearch('meal');
-    setTypeDisplaySearch('search');
-    setPropSearch('?s=');
-    setInputSearch('');
-  }, [setTypeDisplaySearch, setPropSearch, setTypeSearch, setInputSearch]);
+    if (!redirected) {
+      setTypeSearch('meal');
+      setTypeDisplaySearch('search');
+      setPropSearch('?s=');
+      setInputSearch('');
+    }
+  }, [setTypeDisplaySearch, setPropSearch, setTypeSearch, setInputSearch, redirected]);
   useEffect(() => {
-    console.log(searchResult);
     if (!searchResult.meals && !searchResult.drinks) {
       global.alert(phrase);
     }

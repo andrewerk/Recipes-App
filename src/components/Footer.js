@@ -11,13 +11,16 @@ function Footer() {
   const history = useHistory();
   const {
     setSearchBar,
+    setRedirected,
   } = useContext(RecipesContext);
   const clickMeal = () => {
     setSearchBar(false);
+    setRedirected(false);
     history.push('/foods');
   };
   const clickCocktail = () => {
     setSearchBar(false);
+    setRedirected(false);
     history.push('/drinks');
   };
   return (
