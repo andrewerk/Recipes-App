@@ -7,6 +7,7 @@ import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 function Profile({ history }) {
   const [{ email }] = useLocalStorage('user', '');
   const handleClick = (path) => {
+    if (path === '/') localStorage.clear();
     history.push(path);
   };
   return (
@@ -30,6 +31,7 @@ function Profile({ history }) {
       <button
         type="button"
         data-testid="profile-logout-btn"
+        onClick={ () => handleClick('/') }
       >
         Logout
       </button>
