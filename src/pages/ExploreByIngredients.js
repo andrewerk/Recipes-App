@@ -1,15 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { object } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import IngredientCard from '../components/IngredientCard';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 import Footer from '../components/Footer';
+import RecipesContext from '../context/RecipesContext';
 
 function ExploreByIngredients({ location }) {
   const [type, setType] = useState('');
   const [objKey, setObjKey] = useState('');
   const [internObjKey, setInternObjKey] = useState('');
+  const {
+    setTypeSearch,
+    setTypeDisplaySearch,
+    setPropSearch,
+    setInputSearch,
+  } = useContext(RecipesContext);
   const { pathname } = location;
+  const history = useHistory();
   useEffect(() => {
     if (pathname === '/explore/foods/ingredients') {
       setType('meal');
@@ -23,17 +32,31 @@ function ExploreByIngredients({ location }) {
   }, [pathname]);
   const { data } = useFetch(type, 'list', '?i=', 'list');
   const maxIngredients = 12;
+  const handleClick = (ingredient) => {
+    setTypeSearch(type);
+    setTypeDisplaySearch('filter');
+    setPropSearch('?i=');
+    setInputSearch(ingredient);
+    if (pathname === '/explore/foods/ingredients') {
+      history.push('/foods');
+    } else { history.push('/drinks'); }
+  };
   return (
     <div>
       <HeaderWithoutSearch title="Explore Ingredients" />
       {data
         && data[objKey].slice(0, maxIngredients).map((ingredient, index) => (
-          <IngredientCard
-            type={ type }
+          <button
             key={ ingredient[internObjKey] }
-            name={ ingredient[internObjKey] }
-            index={ index }
-          />
+            type="button"
+            onClick={ () => handleClick(ingredient[internObjKey]) }
+          >
+            <IngredientCard
+              type={ type }
+              name={ ingredient[internObjKey] }
+              index={ index }
+            />
+          </button>
         ))}
       <Footer />
     </div>
