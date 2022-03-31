@@ -10,15 +10,26 @@ function FilterButton({ type }) {
     setInputSearch,
     categoriesDrinks,
     categoriesMeal,
+    setRedirected,
   } = useContext(RecipesContext);
+  const [clicked, setClicked] = useState('false');
   const [categories, setCategories] = useState({ meals: [], drinks: [] });
   const handleClick = (e) => {
     e.preventDefault();
+    setRedirected(true);
     console.log(e.target.name);
     setTypeSearch(type);
-    setTypeDisplaySearch('filter');
-    setPropSearch('?c=');
-    setInputSearch(e.target.name);
+    if (clicked === e.target.name || e.target.name === 'All') {
+      setTypeDisplaySearch('search');
+      setPropSearch('?s=');
+      setInputSearch('');
+      setClicked(false);
+    } else {
+      setTypeDisplaySearch('filter');
+      setPropSearch('?c=');
+      setInputSearch(e.target.name === 'All' ? '' : e.target.name);
+      setClicked(e.target.name);
+    }
   };
   const limit = 5;
   useEffect(() => {
@@ -27,11 +38,10 @@ function FilterButton({ type }) {
 
   return (
     <div>
-      { (categoriesMeal && categoriesDrinks)
-      && categories[type === 'meal' ? 'meals' : 'drinks']
-        .slice(0, limit).map((category) => (
+      { categories[type === 'meal' ? 'meals' : 'drinks']
+        .slice(0, limit).concat({ strCategory: 'All' }).map((category) => (
           <button
-            type="submit"
+            type="button"
             onClick={ (e) => handleClick(e) }
             data-testid={ `${category.strCategory}-category-filter` }
             name={ category.strCategory }
