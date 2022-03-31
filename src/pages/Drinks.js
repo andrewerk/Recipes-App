@@ -10,22 +10,44 @@ import RecipeCard from '../components/RecipeCard';
 const phrase = 'Sorry, we haven\'t found any recipes for these filters.';
 
 function Drinks(props) {
-  const { searchResult } = useContext(RecipesContext);
+  const {
+    searchResult,
+    setTypeSearch,
+    setTypeDisplaySearch,
+    setPropSearch,
+    setInputSearch,
+    // errorState,
+    // setSearchResult,
+    searchBar } = useContext(RecipesContext);
   const history = useHistory();
   const maxIngredients = 12;
   useEffect(() => {
-    if (searchResult && searchResult.drinks === null) {
+    setTypeSearch('cocktail');
+    setTypeDisplaySearch('search');
+    setPropSearch('?s=');
+    setInputSearch('');
+  }, [setTypeDisplaySearch, setPropSearch, setTypeSearch, setInputSearch]);
+  useEffect(() => {
+    console.log(searchResult);
+    // console.log(errorState);
+    if (!searchResult.drinks && !searchResult.meals) {
+      console.log(searchResult);
       global.alert(phrase);
     }
   }, [searchResult]);
+  // useEffect(() => {
+  //   console.log(errorState);
+  //   if (errorState === 'Unexpected end of JSON input') {
+  //     global.alert(phrase);
+  //   }
   return (
     <div>
       <div>
         <Header title="Drinks" />
       </div>
-      <SearchBar
+      {searchBar && <SearchBar
         type="cocktail"
-      />
+      />}
       { (searchResult && searchResult.drinks) && (searchResult.drinks.length === 1
         ? history.push(`/drinks/${searchResult.drinks[0].idDrink}`)
         : searchResult.drinks.slice(0, maxIngredients).map((recipe, index) => (

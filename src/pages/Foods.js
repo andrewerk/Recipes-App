@@ -10,22 +10,42 @@ import Footer from '../components/Footer';
 const phrase = 'Sorry, we haven\'t found any recipes for these filters.';
 
 function Foods(props) {
-  const { searchResult } = useContext(RecipesContext);
+  const {
+    searchResult,
+    setTypeSearch,
+    setTypeDisplaySearch,
+    setPropSearch,
+    setInputSearch,
+    // errorState,
+    // setSearchResult,
+    searchBar } = useContext(RecipesContext);
   const history = useHistory();
   const maxIngredients = 12;
   useEffect(() => {
-    if (searchResult && searchResult.meals === null) {
+    setTypeSearch('meal');
+    setTypeDisplaySearch('search');
+    setPropSearch('?s=');
+    setInputSearch('');
+  }, [setTypeDisplaySearch, setPropSearch, setTypeSearch, setInputSearch]);
+  useEffect(() => {
+    console.log(searchResult);
+    if (!searchResult.meals && !searchResult.drinks) {
       global.alert(phrase);
     }
   }, [searchResult]);
+  // useEffect(() => {
+  //   console.log(errorState);
+  //   if (errorState === 'Unexpected end of JSON input') {
+  //     global.alert(phrase);
+  //   }
   return (
     <div>
       <div>
         <Header title="Foods" />
       </div>
-      <SearchBar
+      { searchBar && <SearchBar
         type="meal"
-      />
+      />}
       { (searchResult && searchResult.meals) && (searchResult.meals.length === 1
         ? history.push(`/foods/${searchResult.meals[0].idMeal}`)
         : searchResult.meals.slice(0, maxIngredients).map((recipe, index) => (

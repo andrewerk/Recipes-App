@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../css/Header.css';
+import RecipesContext from '../context/RecipesContext';
 
 function Header({ title }) {
+  const { setSearchBar, searchBar } = useContext(RecipesContext);
   const history = useHistory();
   return (
     <header>
@@ -25,6 +27,7 @@ function Header({ title }) {
         type="image"
         src={ searchIcon }
         alt="search icon"
+        onClick={ () => setSearchBar(!searchBar) }
       />
     </header>
   );

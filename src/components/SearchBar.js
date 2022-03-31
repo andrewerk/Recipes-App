@@ -12,7 +12,8 @@ function SearchBar({ type }) {
   const [radioFilter, setRadioFilter] = useState('ingredients');
   const [input, setInput] = useState('');
   const firstLetter = 'first-letter';
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     setTypeSearch(type);
     if (radioFilter === 'ingredients') {
       setTypeDisplaySearch('filter');
@@ -36,7 +37,7 @@ function SearchBar({ type }) {
   };
 
   return (
-    <form>
+    <form type="">
       <label
         htmlFor="ingredients"
       >
@@ -86,8 +87,8 @@ function SearchBar({ type }) {
         onChange={ ({ target }) => setInput(target.value) }
       />
       <button
-        type="button"
-        onClick={ handleClick }
+        type="submit"
+        onClick={ (e) => handleClick(e) }
         data-testid="exec-search-btn"
       >
         Search

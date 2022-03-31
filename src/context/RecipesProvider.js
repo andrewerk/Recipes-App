@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
 import useFetch from '../hooks/useFetch';
@@ -8,9 +8,14 @@ function RecipesProvider({ children }) {
   const [typeDisplaySearch, setTypeDisplaySearch] = useState('');
   const [propSearch, setPropSearch] = useState('');
   const [inputSearch, setInputSearch] = useState('');
-  const { data: searchResult } = useFetch(
+  const [searchBar, setSearchBar] = useState(false);
+  const { data, isLoading, errorState } = useFetch(
     typeSearch, typeDisplaySearch, propSearch, inputSearch,
   );
+  const [searchResult, setSearchResult] = useState({ drinks: [], meals: [] });
+  useEffect(() => {
+    if (data) setSearchResult(data);
+  }, [data]);
   return (
     <RecipesContext.Provider
       value={ {
@@ -18,6 +23,11 @@ function RecipesProvider({ children }) {
         setTypeDisplaySearch,
         setPropSearch,
         setInputSearch,
+        setSearchBar,
+        setSearchResult,
+        errorState,
+        isLoading,
+        searchBar,
         searchResult } }
     >
       { children }
