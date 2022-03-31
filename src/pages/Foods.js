@@ -6,7 +6,7 @@ import SearchBar from '../components/SearchBar';
 import RecipesContext from '../context/RecipesContext';
 import RecipeCard from '../components/RecipeCard';
 import Footer from '../components/Footer';
-import FilterButton from '../components/FilterButton';
+// import FilterButton from '../components/FilterButton';
 
 const phrase = 'Sorry, we haven\'t found any recipes for these filters.';
 
@@ -50,7 +50,7 @@ function Foods(props) {
       { searchBar && <SearchBar
         type="meal"
       />}
-      <FilterButton type="meal" />
+      {/* <FilterButton type="meal" /> */}
       { isLoading && <h2>Loading</h2>}
       { (searchResult && searchResult.meals) && (searchResult.meals.length === 1
         ? history.push(`/foods/${searchResult.meals[0].idMeal}`)
