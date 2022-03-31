@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { object } from 'prop-types';
+// import RecipesContext from '../context/RecipesContext';
 
 function Login(props) {
   const INITIAL_STATE = {
@@ -39,6 +40,9 @@ function Login(props) {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify(user));
+    // setTypeSearch('meal');
+    // setTypeDisplaySearch('search');
+    // setPropSearch('?s=');
     history.push('/foods');
   };
 

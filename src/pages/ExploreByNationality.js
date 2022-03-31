@@ -53,7 +53,7 @@ function ExploreByNationality(props) {
         && meals.meals.slice(0, maxIngredients).map((meal, index) => (
           <RecipeCard
             { ...props }
-            type="meal"
+            type="foods"
             key={ meal.strMeal }
             name={ meal.strMeal }
             imgSrc={ meal.strMealThumb }
