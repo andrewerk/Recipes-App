@@ -1,4 +1,5 @@
 import React from 'react';
+import DoneDrinkCard from '../components/DoneDrinkCard';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 import FilterButtons from '../components/FilterButtons';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
@@ -10,6 +11,7 @@ function DoneRecipes() {
       <HeaderWithoutSearch title="Done Recipes" />
       <FilterButtons />
       <DoneRecipeCard />
+      <DoneDrinkCard />
     </div>
   );
 }
