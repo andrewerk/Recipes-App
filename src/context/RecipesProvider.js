@@ -17,6 +17,8 @@ function RecipesProvider({ children }) {
   useEffect(() => {
     if (data) setSearchResult(data);
   }, [data]);
+  const { data: categoriesMeal } = useFetch('meal', 'list', '?c=', 'list');
+  const { data: categoriesDrinks } = useFetch('cocktail', 'list', '?c=', 'list');
   return (
     <RecipesContext.Provider
       value={ {
@@ -31,6 +33,8 @@ function RecipesProvider({ children }) {
         errorState,
         isLoading,
         searchBar,
+        categoriesMeal,
+        categoriesDrinks,
         searchResult } }
     >
       { children }
