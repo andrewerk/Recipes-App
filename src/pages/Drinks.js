@@ -19,6 +19,7 @@ function Drinks(props) {
     setInputSearch,
     redirected,
     isLoading,
+    categoriesDrinks,
     // errorState,
     // setSearchResult,
     searchBar } = useContext(RecipesContext);
@@ -50,9 +51,10 @@ function Drinks(props) {
       {searchBar && <SearchBar
         type="cocktail"
       />}
-      <FilterButton type="cocktail" />
+      { categoriesDrinks && <FilterButton type="cocktail" /> }
       { isLoading && <h2>Loading</h2>}
-      { (searchResult && searchResult.drinks) && (searchResult.drinks.length === 1
+      { (searchResult && searchResult.drinks) && ((searchResult.drinks.length === 1
+      && !redirected)
         ? history.push(`/drinks/${searchResult.drinks[0].idDrink}`)
         : searchResult.drinks.slice(0, maxIngredients).map((recipe, index) => (
           <RecipeCard

@@ -19,6 +19,9 @@ function Foods(props) {
     setInputSearch,
     redirected,
     isLoading,
+    categoriesMeal,
+    // propSearch,
+    // typeDisplaySearch,
     // errorState,
     // setSearchResult,
     searchBar } = useContext(RecipesContext);
@@ -50,9 +53,10 @@ function Foods(props) {
       { searchBar && <SearchBar
         type="meal"
       />}
-      <FilterButton type="meal" />
+      { categoriesMeal && <FilterButton type="meal" /> }
       { isLoading && <h2>Loading</h2>}
-      { (searchResult && searchResult.meals) && (searchResult.meals.length === 1
+      { (searchResult && searchResult.meals) && ((searchResult.meals.length === 1
+      && !redirected)
         ? history.push(`/foods/${searchResult.meals[0].idMeal}`)
         : searchResult.meals.slice(0, maxIngredients).map((recipe, index) => (
           <RecipeCard
