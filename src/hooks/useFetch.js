@@ -19,6 +19,7 @@ const useFetch = (type, displayType, prop = '', input = '') => {
       try {
         const response = await fetch(`https://www.the${type}db.com/api/json/v1/1/${displayType}.php${prop}${input}`);
         const responseJson = await response.json();
+        console.log(responseJson);
         setData(responseJson);
       } catch (error) {
         setErrorState(error.message);

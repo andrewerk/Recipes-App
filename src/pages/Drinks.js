@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import RecipesContext from '../context/RecipesContext';
 import RecipeCard from '../components/RecipeCard';
-// import FilterButton from '../components/FilterButton';
+import FilterButton from '../components/FilterButton';
 
 const phrase = 'Sorry, we haven\'t found any recipes for these filters.';
 
@@ -19,6 +19,7 @@ function Drinks(props) {
     setInputSearch,
     redirected,
     isLoading,
+    categoriesDrinks,
     // errorState,
     // setSearchResult,
     searchBar } = useContext(RecipesContext);
@@ -50,9 +51,10 @@ function Drinks(props) {
       {searchBar && <SearchBar
         type="cocktail"
       />}
-      {/* <FilterButton type="cocktail" /> */}
+      { categoriesDrinks && <FilterButton type="cocktail" /> }
       { isLoading && <h2>Loading</h2>}
-      { (searchResult && searchResult.drinks) && (searchResult.drinks.length === 1
+      { (searchResult && searchResult.drinks) && ((searchResult.drinks.length === 1
+      && !redirected)
         ? history.push(`/drinks/${searchResult.drinks[0].idDrink}`)
         : searchResult.drinks.slice(0, maxIngredients).map((recipe, index) => (
           <RecipeCard
