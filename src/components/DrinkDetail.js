@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { object } from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import RecomendationCard from './RecomendationCard';
 import '../css/MealDetail.css';
 import BtnStartRecipe from './BtnStartRecipe';
+import ButtonShare from './ButtonShare';
+import ButtonFavorite from './ButtonFavorite';
+import RecipesContext from '../context/RecipesContext';
 
 function DrinkDetail({ drink, recommended }) {
   console.log(drink);
   const [ingredients, setIngredients] = useState([]);
   const [carouselSlides, setCarouselSlides] = useState();
+  const { setActualFood } = useContext(RecipesContext);
+
+  useEffect(() => {
+    setActualFood(drink[0]);
+  }, [drink, setActualFood]);
 
   useEffect(() => {
     const listIngredients = Object.keys(drink[0])
@@ -61,18 +69,8 @@ function DrinkDetail({ drink, recommended }) {
             >
               {e.strDrink}
             </h1>
-            <button
-              type="button"
-              data-testid="share-btn"
-            >
-              share
-            </button>
-            <button
-              type="button"
-              data-testid="favorite-btn"
-            >
-              favorite
-            </button>
+            <ButtonShare />
+            <ButtonFavorite />
           </div>
           <p
             data-testid="recipe-category"

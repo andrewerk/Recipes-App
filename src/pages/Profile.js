@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
-function Profile({ history }) {
-  const [{ email }] = useLocalStorage('user', '');
+function Profile() {
+  const history = useHistory();
+  const email = JSON.parse(localStorage.getItem('user'));
   const handleClick = (path) => {
     if (path === '/') localStorage.clear();
     history.push(path);
@@ -13,7 +13,7 @@ function Profile({ history }) {
   return (
     <div>
       <HeaderWithoutSearch title="Profile" />
-      <p data-testid="profile-email">{email}</p>
+      <p data-testid="profile-email">{email.email}</p>
       <button
         type="button"
         data-testid="profile-done-btn"
@@ -41,7 +41,3 @@ function Profile({ history }) {
 }
 
 export default Profile;
-
-Profile.propTypes = {
-  history: PropTypes.node.isRequired,
-};

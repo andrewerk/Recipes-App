@@ -1,5 +1,5 @@
 import React from 'react';
-import DoneDrinkCard from '../components/DoneDrinkCard';
+// import DoneDrinkCard from '../components/DoneDrinkCard';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 import FilterSavedRecipes from '../components/FilterSavedRecipes';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
@@ -9,8 +9,11 @@ import useFetch from '../hooks/useFetch';
 function DoneRecipes() {
   const { data: x } = useFetch('meal', 'search', '?s=', '');
   console.log(x);
-  const { data: y } = useFetch('cocktail', 'search', '?s=', '');
-  console.log(y);
+  // const { data: y } = useFetch('cocktail', 'search', '?s=', '');
+  // console.log(y);
+  // function tagMap() {
+  //   (recipe.strTags).split(',').map((tag) => <button)
+  // }
   return (
     <div>
       <HeaderWithoutSearch title="Done Recipes" />
@@ -26,7 +29,7 @@ function DoneRecipes() {
           nationality={ recipe.strArea }
           tagName={ recipe.strTags }
         />))}
-      {y && y.drinks.map((recipe, index) => (
+      {/* {y && y.drinks.map((recipe, index) => (
         <DoneDrinkCard
           key={ index }
           imgSource={ recipe.strDrinkThumb }
@@ -34,7 +37,7 @@ function DoneRecipes() {
           category={ recipe.strAlcoholic }
           dateModified={ recipe.dateModified }
         />
-      ))}
+      ))} */}
     </div>
   );
 }
