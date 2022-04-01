@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
-function DoneDrinkCard({ imgSource, category, recipeName, doneDate, index }) {
+function DoneDrinkCard({ imgSource, category, recipeName, dateModified, index }) {
   return (
-    <div className="done-recipe-card-container">
+    <div className="done-drink-recipe-card-container">
       <img
-        alt="done recipe"
+        alt="done drink recipe"
         className="done-recipe-image"
         data-testid={ `${index}-horizontal-image` }
         src={ imgSource }
@@ -18,7 +18,7 @@ function DoneDrinkCard({ imgSource, category, recipeName, doneDate, index }) {
         {recipeName}
       </p>
       <p data-testid={ `${index}-horizontal-done-date` }>
-        {doneDate}
+        {dateModified}
       </p>
       <img
         alt="share icon"
@@ -32,7 +32,7 @@ function DoneDrinkCard({ imgSource, category, recipeName, doneDate, index }) {
 
 DoneDrinkCard.propTypes = {
   category: PropTypes.string,
-  doneDate: PropTypes.string,
+  dateModified: PropTypes.string,
   imgSource: PropTypes.string,
   index: PropTypes.number,
   recipeName: PropTypes.string,

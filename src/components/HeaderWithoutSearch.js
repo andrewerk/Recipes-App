@@ -16,7 +16,7 @@ function HeaderWithoutSearch({ title }) {
         alt="profile icon"
         onClick={ () => history.push('/profile') }
       />
-      <h1 data-testid="page-title">
+      <h1 className="heading-without-search" data-testid="page-title">
         {title}
       </h1>
     </header>

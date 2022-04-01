@@ -35,6 +35,7 @@ function RecipesProvider({ children }) {
         searchBar,
         categoriesMeal,
         categoriesDrinks,
+        data,
         searchResult } }
     >
       { children }

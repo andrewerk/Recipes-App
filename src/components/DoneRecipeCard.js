@@ -39,7 +39,7 @@ function DoneRecipeCard({
 
 DoneRecipeCard.propTypes = {
   category: PropTypes.string,
-  doneDate: PropTypes.string,
+  dateModified: PropTypes.string,
   imgSource: PropTypes.string,
   index: PropTypes.number,
   nationality: PropTypes.string,

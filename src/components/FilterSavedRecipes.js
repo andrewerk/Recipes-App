@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FilterButtons() {
+function FilterSavedRecipes() {
   return (
     <div className="btn-container">
       <button
@@ -28,4 +28,4 @@ function FilterButtons() {
   );
 }
 
-export default FilterButtons;
+export default FilterSavedRecipes;
