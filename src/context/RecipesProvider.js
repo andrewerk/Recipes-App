@@ -18,6 +18,7 @@ function RecipesProvider({ children }) {
     if (data) setSearchResult(data);
   }, [data]);
   const [clipboard, setClipboard] = useState('');
+  const [actualFood, setActualFood] = useState({});
   const { data: categoriesMeal } = useFetch('meal', 'list', '?c=', 'list');
   const { data: categoriesDrinks } = useFetch('cocktail', 'list', '?c=', 'list');
 
@@ -32,6 +33,7 @@ function RecipesProvider({ children }) {
         setSearchResult,
         setRedirected,
         setClipboard,
+        setActualFood,
         redirected,
         errorState,
         isLoading,
@@ -40,6 +42,7 @@ function RecipesProvider({ children }) {
         categoriesDrinks,
         searchResult,
         clipboard,
+        actualFood,
       } }
     >
       { children }

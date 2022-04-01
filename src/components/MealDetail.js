@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { object } from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import RecomendationCard from './RecomendationCard';
@@ -6,11 +6,17 @@ import '../css/MealDetail.css';
 import BtnStartRecipe from './BtnStartRecipe';
 import ButtonShare from './ButtonShare';
 import ButtonFavorite from './ButtonFavorite';
+import RecipesContext from '../context/RecipesContext';
 
 function MealDetail({ meal, recommended }) {
   const [ingredients, setIngredients] = useState([]);
   const [carouselSlides, setCarouselSlides] = useState();
   const srcVideo = meal[0].strYoutube.replace('https://www.youtube.com/watch?v=', '');
+  const { setActualFood } = useContext(RecipesContext);
+
+  useEffect(() => {
+    setActualFood(meal[0]);
+  }, [meal, setActualFood]);
 
   useEffect(() => {
     const listIngredients = Object.keys(meal[0])
