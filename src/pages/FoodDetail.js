@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { object } from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import MealDetail from '../components/MealDetail';
 import DrinkDetail from '../components/DrinkDetail';
+import RecipesContext from '../context/RecipesContext';
 
 function FoodDetail({ location, match: { params: { id } } }) {
   const [type, setType] = useState('');
   const [recommendType, setRecommendType] = useState('');
+  const { setClipboard } = useContext(RecipesContext);
 
   useEffect(() => {
     const { pathname } = location;
-    console.log(pathname);
+    setClipboard(pathname);
     if (pathname.includes('foods')) {
       setType('meal');
       setRecommendType('cocktail');
@@ -18,7 +20,7 @@ function FoodDetail({ location, match: { params: { id } } }) {
       setType('cocktail');
       setRecommendType('meal');
     }
-  }, [location]);
+  }, [location, setClipboard]);
   const { data } = useFetch(type, 'lookup', '?i=', id);
   const { data: recommended } = useFetch(recommendType, 'search', '?s=');
 
