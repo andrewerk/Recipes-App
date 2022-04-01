@@ -27,12 +27,18 @@ function DoneRecipeCard({
         data-testid={ `${index}-horizontal-share-btn` }
         src={ shareIcon }
       />
-      <button
-        type="button"
-        data-testid={ `${index}-${tagName}-horizontal-tag` }
-      >
-        {tagName}
-      </button>
+      {/* turns string into array, slice the first two positions and render on buttons */}
+      { tagName !== null && (
+        tagName.split(',').slice(0, 2).map((tag) => (
+          <button
+            key={ tag }
+            type="button"
+            data-testid={ `${index}-${tag}-horizontal-tag` }
+          >
+            {tag}
+          </button>
+        ))
+      )}
     </div>
   );
 }

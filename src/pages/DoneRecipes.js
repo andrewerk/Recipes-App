@@ -9,11 +9,6 @@ import useFetch from '../hooks/useFetch';
 function DoneRecipes() {
   const { data: x } = useFetch('meal', 'search', '?s=', '');
   console.log(x);
-  // const { data: y } = useFetch('cocktail', 'search', '?s=', '');
-  // console.log(y);
-  // function tagMap() {
-  //   (recipe.strTags).split(',').map((tag) => <button)
-  // }
   return (
     <div>
       <HeaderWithoutSearch title="Done Recipes" />
@@ -27,17 +22,16 @@ function DoneRecipes() {
           index={ index }
           dateModified={ recipe.dateModified }
           nationality={ recipe.strArea }
-          tagName={ recipe.strTags }
+          tagName={ (recipe.strTags) }
         />))}
-      {/* {y && y.drinks.map((recipe, index) => (
-        <DoneDrinkCard
-          key={ index }
-          imgSource={ recipe.strDrinkThumb }
-          recipeName={ recipe.strDrink }
-          category={ recipe.strAlcoholic }
-          dateModified={ recipe.dateModified }
-        />
-      ))} */}
+      {/* <DoneDrinkCard
+        key={ index }
+        imgSource={ recipe.strDrinkThumb }
+        recipeName={ recipe.strDrink }
+        category={ recipe.strAlcoholic }
+        dateModified={ recipe.dateModified }
+        tagName={ recipe.strTags }
+      /> */}
     </div>
   );
 }
