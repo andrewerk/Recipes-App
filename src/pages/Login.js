@@ -49,30 +49,31 @@ function Login(props) {
   return (
     <>
       <h1>Login</h1>
-      <input
-        type="text"
-        name="email"
-        data-testid="email-input"
-        placeholder="someone@email.com"
-        value={ email }
-        onChange={ (e) => handleChange(e) }
-      />
-      <input
-        type="password"
-        name="pass"
-        data-testid="password-input"
-        placeholder="Password"
-        value={ pass }
-        onChange={ (e) => handleChange(e) }
-      />
-      <button
-        type="submit"
-        data-testid="login-submit-btn"
-        onClick={ (e) => handleClick(e) }
-        disabled={ isDisable }
-      >
-        Enter
-      </button>
+      <form onSubmit={ (e) => handleClick(e) }>
+        <input
+          type="text"
+          name="email"
+          data-testid="email-input"
+          placeholder="someone@email.com"
+          value={ email }
+          onChange={ (e) => handleChange(e) }
+        />
+        <input
+          type="password"
+          name="pass"
+          data-testid="password-input"
+          placeholder="Password"
+          value={ pass }
+          onChange={ (e) => handleChange(e) }
+        />
+        <button
+          type="submit"
+          data-testid="login-submit-btn"
+          disabled={ isDisable }
+        >
+          Enter
+        </button>
+      </form>
     </>
 
   );
