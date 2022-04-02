@@ -1,37 +1,68 @@
 import React from 'react';
-// import DoneDrinkCard from '../components/DoneDrinkCard';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 import FilterSavedRecipes from '../components/FilterSavedRecipes';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 import '../css/Done-recipes.css';
-import useFetch from '../hooks/useFetch';
 
 function DoneRecipes() {
-  const { data: x } = useFetch('meal', 'search', '?s=', '');
-  console.log(x);
+  const doneRecipes = [
+    {
+      id: '52771',
+      type: 'food',
+      nationality: 'Italian',
+      category: 'Vegetarian',
+      alcoholicOrNot: '',
+      name: 'Spicy Arrabiata Penne',
+      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+      doneDate: '23/06/2020',
+      tags: ['Pasta', 'Curry'],
+    },
+    {
+      id: '178319',
+      type: 'drink',
+      nationality: '',
+      category: 'Cocktail',
+      alcoholicOrNot: 'Alcoholic',
+      name: 'Aquamarine',
+      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+      doneDate: '23/06/2020',
+      tags: [],
+    },
+  ];
+  localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+  const teste = JSON.parse(localStorage.getItem('doneRecipes'));
+  console.log(teste);
   return (
     <div>
       <HeaderWithoutSearch title="Done Recipes" />
       <FilterSavedRecipes />
-      {x && x.meals.map((recipe, index) => (
-        <DoneRecipeCard
-          key={ index }
-          imgSource={ recipe.strMealThumb }
-          category={ recipe.strCategory }
-          recipeName={ recipe.strMeal }
-          index={ index }
-          dateModified={ recipe.dateModified }
-          nationality={ recipe.strArea }
-          tagName={ (recipe.strTags) }
-        />))}
-      {/* <DoneDrinkCard
-        key={ index }
-        imgSource={ recipe.strDrinkThumb }
-        recipeName={ recipe.strDrink }
-        category={ recipe.strAlcoholic }
-        dateModified={ recipe.dateModified }
-        tagName={ recipe.strTags }
-      /> */}
+      { teste.map((recipe, index) => (recipe.type === 'drink'
+        ? (
+          <DoneRecipeCard
+            key={ recipe.id }
+            index={ index }
+            image={ recipe.image }
+            alcoholicOrNot={ recipe.alcoholicOrNot }
+            name={ recipe.name }
+            doneDate={ recipe.doneDate }
+            nationality=""
+            category=""
+            hifen=""
+            tags={ (recipe.tags) }
+          />)
+        : (
+          <DoneRecipeCard
+            key={ recipe.id }
+            hifen="-"
+            index={ index }
+            image={ recipe.image }
+            category={ recipe.category }
+            name={ recipe.name }
+            doneDate={ recipe.doneDate }
+            nationality={ recipe.nationality }
+            tags={ (recipe.tags) }
+          />)
+      ))}
     </div>
   );
 }

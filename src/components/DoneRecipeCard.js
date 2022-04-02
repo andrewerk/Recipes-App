@@ -3,23 +3,28 @@ import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
 function DoneRecipeCard({
-  imgSource, category, recipeName, dateModified, index, tagName, nationality }) {
+  image, category, name, doneDate, index, tags, nationality, alcoholicOrNot, hifen }) {
   return (
-    <div className="done-recipe-card-container">
+    <div
+      className="done-recipe-card-container"
+    >
       <img
+        data-testid={ `${index}-horizontal-image` }
         alt="done recipe"
         className="done-recipe-image"
-        data-testid={ `${index}-horizontal-image` }
-        src={ imgSource }
+        src={ image }
       />
       <p data-testid={ `${index}-horizontal-top-text` }>
-        {`${nationality}-${category}`}
+        {`${nationality} ${hifen} ${category}`}
+      </p>
+      <p data-testid={ `${index}-horizontal-top-text` }>
+        {alcoholicOrNot}
       </p>
       <p data-testid={ `${index}-horizontal-name` }>
-        {recipeName}
+        {name}
       </p>
       <p data-testid={ `${index}-horizontal-done-date` }>
-        {dateModified}
+        {doneDate}
       </p>
       <img
         alt="share icon"
@@ -28,29 +33,28 @@ function DoneRecipeCard({
         src={ shareIcon }
       />
       {/* turns string into array, slice the first two positions and render on buttons */}
-      { tagName !== null && (
-        tagName.split(',').slice(0, 2).map((tag) => (
-          <button
-            key={ tag }
-            type="button"
-            data-testid={ `${index}-${tag}-horizontal-tag` }
-          >
-            {tag}
-          </button>
-        ))
-      )}
+      { tags.map((tag) => (
+        <button
+          key={ tag }
+          type="button"
+          data-testid={ `${index}-${tag}-horizontal-tag` }
+        >
+          {tag}
+        </button>
+      )) }
     </div>
   );
 }
 
 DoneRecipeCard.propTypes = {
+  alcoholicOrNot: PropTypes.string,
   category: PropTypes.string,
-  dateModified: PropTypes.string,
-  imgSource: PropTypes.string,
+  doneDate: PropTypes.string,
+  image: PropTypes.string,
   index: PropTypes.number,
   nationality: PropTypes.string,
-  recipeName: PropTypes.string,
-  tagName: PropTypes.string,
+  name: PropTypes.string,
+  tags: PropTypes.string,
 }.isRequired;
 
 export default DoneRecipeCard;
