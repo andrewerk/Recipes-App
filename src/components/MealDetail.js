@@ -3,7 +3,7 @@ import { object } from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import RecomendationCard from './RecomendationCard';
 import '../css/MealDetail.css';
-import BtnStartRecipe from './BtnStartRecipe';
+import ButtonStartRecipe from './ButtonStartRecipe';
 import ButtonShare from './ButtonShare';
 import ButtonFavorite from './ButtonFavorite';
 import RecipesContext from '../context/RecipesContext';
@@ -111,7 +111,7 @@ function MealDetail({ meal, recommended }) {
           </div>
         </div>
       ))}
-      <BtnStartRecipe />
+      <ButtonStartRecipe />
     </div>
   );
 }

@@ -3,13 +3,12 @@ import { object } from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import RecomendationCard from './RecomendationCard';
 import '../css/MealDetail.css';
-import BtnStartRecipe from './BtnStartRecipe';
+import ButtonStartRecipe from './ButtonStartRecipe';
 import ButtonShare from './ButtonShare';
 import ButtonFavorite from './ButtonFavorite';
 import RecipesContext from '../context/RecipesContext';
 
 function DrinkDetail({ drink, recommended }) {
-  console.log(drink);
   const [ingredients, setIngredients] = useState([]);
   const [carouselSlides, setCarouselSlides] = useState();
   const { setActualFood } = useContext(RecipesContext);
@@ -44,7 +43,6 @@ function DrinkDetail({ drink, recommended }) {
 
   useEffect(() => {
     const cardsLength = 6;
-    console.log(recommended);
     if (recommended) {
       const recommendLength = recommended.meals
         .filter((item, index) => index < cardsLength);
@@ -108,7 +106,7 @@ function DrinkDetail({ drink, recommended }) {
           </div>
         </div>
       ))}
-      <BtnStartRecipe />
+      <ButtonStartRecipe />
     </div>
   );
 }
