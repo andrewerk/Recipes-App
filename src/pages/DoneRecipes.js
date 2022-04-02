@@ -49,10 +49,13 @@ function DoneRecipes() {
             category=""
             hifen=""
             tags={ (recipe.tags) }
+            type={ recipe.type }
+            id={ recipe.id }
           />)
         : (
           <DoneRecipeCard
             key={ recipe.id }
+            id={ recipe.id }
             hifen="-"
             index={ index }
             image={ recipe.image }
@@ -61,6 +64,7 @@ function DoneRecipes() {
             doneDate={ recipe.doneDate }
             nationality={ recipe.nationality }
             tags={ (recipe.tags) }
+            type={ recipe.type }
           />)
       ))}
     </div>

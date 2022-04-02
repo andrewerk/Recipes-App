@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
 function DoneRecipeCard({
-  image, category, name, doneDate, index, tags, nationality, alcoholicOrNot, hifen }) {
+  image, category, name,
+  doneDate, index, tags, nationality, alcoholicOrNot, hifen, type, id }) {
+  const [copyAlert, setCopyAlert] = useState(false);
+  const handleShare = () => {
+    const copyLink = `http://localhost:3000/${type}s/${id}`;
+    navigator.clipboard.writeText(copyLink);
+    setCopyAlert(true);
+  };
   return (
     <div
       className="done-recipe-card-container"
     >
-      <img
+      <input
+        type="image"
         data-testid={ `${index}-horizontal-image` }
         alt="done recipe"
         className="done-recipe-image"
@@ -26,13 +34,15 @@ function DoneRecipeCard({
       <p data-testid={ `${index}-horizontal-done-date` }>
         {doneDate}
       </p>
-      <img
+      <input
+        type="image"
         alt="share icon"
         className="share-icon"
         data-testid={ `${index}-horizontal-share-btn` }
         src={ shareIcon }
+        onClick={ () => handleShare() }
       />
-      {/* turns string into array, slice the first two positions and render on buttons */}
+      {copyAlert && <p>Link copied!</p>}
       { tags.map((tag) => (
         <button
           key={ tag }
