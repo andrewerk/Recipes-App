@@ -5,6 +5,7 @@ import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 function Profile() {
   const history = useHistory();
+  const email = JSON.parse(localStorage.getItem('user'));
   const handleClick = (path) => {
     if (path === '/') localStorage.clear();
     history.push(path);
@@ -13,7 +14,7 @@ function Profile() {
   return (
     <div>
       <HeaderWithoutSearch title="Profile" />
-      <p data-testid="profile-email">{email.email}</p>
+      <p data-testid="profile-email">{email?.email}</p>
       <button
         type="button"
         data-testid="profile-done-btn"
