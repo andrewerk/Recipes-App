@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
+import '../css/Done-recipes-card.css';
 
 function DoneRecipeCard({
   image, category, name,
   doneDate, index, tags, nationality, alcoholicOrNot, hifen, type, id }) {
+  const history = useHistory();
   const [copyAlert, setCopyAlert] = useState(false);
   const handleShare = () => {
     const copyLink = `http://localhost:3000/${type}s/${id}`;
     navigator.clipboard.writeText(copyLink);
     setCopyAlert(true);
   };
+
   return (
     <div
       className="done-recipe-card-container"
@@ -21,6 +25,7 @@ function DoneRecipeCard({
         alt="done recipe"
         className="done-recipe-image"
         src={ image }
+        onClick={ () => history.push(`/${type}s/${id}`) }
       />
       <p data-testid={ `${index}-horizontal-top-text` }>
         {`${nationality} ${hifen} ${category}`}
@@ -28,9 +33,14 @@ function DoneRecipeCard({
       <p data-testid={ `${index}-horizontal-top-text` }>
         {alcoholicOrNot}
       </p>
-      <p data-testid={ `${index}-horizontal-name` }>
+      <button
+        data-testid={ `${index}-horizontal-name` }
+        className="clickable-text"
+        type="button"
+        onClick={ () => history.push(`/${type}s/${id}`) }
+      >
         {name}
-      </p>
+      </button>
       <p data-testid={ `${index}-horizontal-done-date` }>
         {doneDate}
       </p>
