@@ -5,12 +5,11 @@ import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 function Profile() {
   const history = useHistory();
-  const email = JSON.parse(localStorage.getItem('user'));
-  console.log(email);
   const handleClick = (path) => {
     if (path === '/') localStorage.clear();
     history.push(path);
   };
+
   return (
     <div>
       <HeaderWithoutSearch title="Profile" />

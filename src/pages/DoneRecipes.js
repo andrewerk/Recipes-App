@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DoneRecipeCard from '../components/DoneRecipeCard';
-import FilterSavedRecipes from '../components/FilterSavedRecipes';
+// import FilterSavedRecipes from '../components/FilterSavedRecipes';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 import '../css/Done-recipes.css';
 
@@ -32,11 +32,41 @@ function DoneRecipes() {
   localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
   const teste = JSON.parse(localStorage.getItem('doneRecipes'));
   console.log(teste);
+  const [filteredDoneRecipes, setFilteredDoneRecipes] = useState(teste);
+
   return (
     <div>
       <HeaderWithoutSearch title="Done Recipes" />
-      <FilterSavedRecipes />
-      { teste.map((recipe, index) => (recipe.type === 'drink'
+      {/* <FilterSavedRecipes /> */}
+      <div className="btn-container">
+        <button
+          className="done-recipes-btn"
+          data-testid="filter-by-all-btn"
+          type="button"
+          onClick={ () => setFilteredDoneRecipes(teste) }
+        >
+          All
+        </button>
+        <button
+          className="done-recipes-btn"
+          data-testid="filter-by-food-btn"
+          type="button"
+          onClick={ () => setFilteredDoneRecipes(filteredDoneRecipes
+            .filter((recipe) => recipe.type === 'food')) }
+        >
+          Food
+        </button>
+        <button
+          className="done-recipes-btn"
+          data-testid="filter-by-drink-btn"
+          type="button"
+          onClick={ () => setFilteredDoneRecipes(filteredDoneRecipes
+            .filter((recipe) => recipe.type === 'drink')) }
+        >
+          Drinks
+        </button>
+      </div>
+      { filteredDoneRecipes.map((recipe, index) => (recipe.type === 'drink'
         ? (
           <DoneRecipeCard
             key={ recipe.id }
