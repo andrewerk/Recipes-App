@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import RecipesContext from '../context/RecipesContext';
 
-function ButtonFavorite() {
+function ButtonFavorite({ testid }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favIcon, setFavIcon] = useState(whiteHeartIcon);
   const { actualFood } = useContext(RecipesContext);
@@ -73,9 +74,14 @@ function ButtonFavorite() {
       src={ favIcon }
       alt="Favorite Icon"
       onClick={ () => handleFav() }
-      data-testid="favorite-btn"
+      // data-testid="favorite-btn"
+      data-testid={ testid }
     />
   );
 }
+
+ButtonFavorite.propTypes = {
+  testid: PropTypes.string,
+}.isRequired;
 
 export default ButtonFavorite;
