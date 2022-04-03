@@ -6,7 +6,6 @@ import '../css/Done-recipes.css';
 function DoneRecipes() {
   const doneRecipesFromLocal = JSON.parse(localStorage.getItem('doneRecipes'));
   const [filteredDoneRecipes, setFilteredDoneRecipes] = useState(doneRecipesFromLocal);
-
   return (
     <div>
       <HeaderWithoutSearch title="Done Recipes" />
@@ -38,36 +37,37 @@ function DoneRecipes() {
           Drinks
         </button>
       </div>
-      { filteredDoneRecipes.map((recipe, index) => (recipe.type === 'drink'
-        ? (
-          <DoneRecipeCard
-            key={ recipe.id }
-            index={ index }
-            image={ recipe.image }
-            alcoholicOrNot={ recipe.alcoholicOrNot }
-            name={ recipe.name }
-            doneDate={ recipe.doneDate }
-            nationality=""
-            category=""
-            hifen=""
-            tags={ (recipe.tags) }
-            type={ recipe.type }
-            id={ recipe.id }
-          />)
-        : (
-          <DoneRecipeCard
-            key={ recipe.id }
-            id={ recipe.id }
-            hifen="-"
-            index={ index }
-            image={ recipe.image }
-            category={ recipe.category }
-            name={ recipe.name }
-            doneDate={ recipe.doneDate }
-            nationality={ recipe.nationality }
-            tags={ (recipe.tags) }
-            type={ recipe.type }
-          />)
+      { filteredDoneRecipes && filteredDoneRecipes.map((recipe, index) => (
+        recipe.type === 'drink'
+          ? (
+            <DoneRecipeCard
+              key={ recipe.id }
+              index={ index }
+              image={ recipe.image }
+              alcoholicOrNot={ recipe.alcoholicOrNot }
+              name={ recipe.name }
+              doneDate={ recipe.doneDate }
+              nationality=""
+              category=""
+              hifen=""
+              tags={ (recipe.tags) }
+              type={ recipe.type }
+              id={ recipe.id }
+            />)
+          : (
+            <DoneRecipeCard
+              key={ recipe.id }
+              id={ recipe.id }
+              hifen="-"
+              index={ index }
+              image={ recipe.image }
+              category={ recipe.category }
+              name={ recipe.name }
+              doneDate={ recipe.doneDate }
+              nationality={ recipe.nationality }
+              tags={ (recipe.tags) }
+              type={ recipe.type }
+            />)
       ))}
     </div>
   );
