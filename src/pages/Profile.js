@@ -10,10 +10,11 @@ function Profile() {
     if (path === '/') localStorage.clear();
     history.push(path);
   };
+
   return (
     <div>
       <HeaderWithoutSearch title="Profile" />
-      <p data-testid="profile-email">{email.email}</p>
+      <p data-testid="profile-email">{email?.email}</p>
       <button
         type="button"
         data-testid="profile-done-btn"

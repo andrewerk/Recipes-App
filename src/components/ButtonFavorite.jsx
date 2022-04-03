@@ -75,7 +75,6 @@ function ButtonFavorite() {
       onClick={ () => handleFav() }
       data-testid="favorite-btn"
     />
-
   );
 }
 

@@ -1,6 +1,8 @@
 header {
+  background-color: whitesmoke;
   display: flex;
-  justify-content: space-between;
-  margin: 10px;
+  gap: 10vw;
+  justify-content: flex-start;
+  padding: 10px;
 }
 
