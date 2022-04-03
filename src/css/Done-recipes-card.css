@@ -2,3 +2,9 @@
   background-color: transparent;
   border: none;
 }
+
+.done-recipe-image {
+  height: 30%;
+  object-fit: cover;
+  width: 30%;
+}
