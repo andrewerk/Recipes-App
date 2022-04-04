@@ -68,7 +68,7 @@ function DrinkDetail({ drink, recommended }) {
               {e.strDrink}
             </h1>
             <ButtonShare />
-            <ButtonFavorite />
+            <ButtonFavorite testid="favorite-btn" />
           </div>
           <p
             data-testid="recipe-category"
