@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import FavoriteRecipeCard from '../components/FavoriteRecipeCard';
-// import FilterSavedRecipes from '../components/FilterSavedRecipes';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import RecipesContext from '../context/RecipesContext';
 
 function Favorites() {
-  const favoriteRecipesFromLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  console.log(favoriteRecipesFromLocal);
-  const [filteredFavoriteRecipes,
-    setFilteredFavoriteRecipes] = useState(favoriteRecipesFromLocal);
+  const { filteredFavoriteRecipes,
+    setFilteredFavoriteRecipes, favoriteRecipesFromLocal } = useContext(RecipesContext);
+
   return (
     <div>
       <HeaderWithoutSearch title="Favorite Recipes" />
-      {/* <FilterSavedRecipes /> */}
       <div className="fav-btn-container">
         <button
           className="favorite-recipes-btn"
@@ -31,7 +29,7 @@ function Favorites() {
           Food
         </button>
         <button
-          className="done-recipes-btn"
+          className="favorite-recipes-btn"
           data-testid="filter-by-drink-btn"
           type="button"
           onClick={ () => setFilteredFavoriteRecipes(filteredFavoriteRecipes
@@ -49,7 +47,6 @@ function Favorites() {
               image={ recipe.image }
               alcoholicOrNot={ recipe.alcoholicOrNot }
               name={ recipe.name }
-              doneDate={ recipe.doneDate }
               nationality=""
               category=""
               hifen=""
@@ -65,9 +62,7 @@ function Favorites() {
               image={ recipe.image }
               category={ recipe.category }
               name={ recipe.name }
-              doneDate={ recipe.doneDate }
               nationality={ recipe.nationality }
-              tags={ (recipe.tags) }
               type={ recipe.type }
             />)
       ))}

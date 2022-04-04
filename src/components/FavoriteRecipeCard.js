@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-import ButtonFavorite from './ButtonFavorite';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import RecipesContext from '../context/RecipesContext';
 
 function FavoriteRecipeCard({
   image, category, name,
@@ -14,6 +15,15 @@ function FavoriteRecipeCard({
     navigator.clipboard.writeText(copyLink);
     setCopyAlert(true);
   };
+
+  const { setFilteredFavoriteRecipes } = useContext(RecipesContext);
+
+  function handleFavorite() {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const newFavoriteRecipes = favoriteRecipes.filter((recipe) => recipe.id !== id);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+    setFilteredFavoriteRecipes(newFavoriteRecipes);
+  }
 
   return (
     <div
@@ -50,8 +60,12 @@ function FavoriteRecipeCard({
         onClick={ () => handleShare() }
       />
       {copyAlert && <p>Link copied!</p>}
-      <ButtonFavorite
-        testid={ `${index}-horizontal-favorite-btn` }
+      <input
+        type="image"
+        src={ blackHeartIcon }
+        alt="Favorite Icon"
+        onClick={ () => handleFavorite() }
+        data-testid={ `${index}-horizontal-favorite-btn` }
       />
     </div>
   );
