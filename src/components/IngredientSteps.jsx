@@ -5,6 +5,24 @@ import '../css/IngredientSteps.css';
 function IngredientsStep({ meal }) {
   const [checkboxList, setCheckboxList] = useState([]);
   const [checkedIngredient, setCheckedIngredient] = useState([]);
+  const [checked] = useState(true);
+
+  useEffect(() => {
+    const localIngredients = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    setCheckedIngredient(localIngredients.cocktails[meal.idDrink]);
+  }, [setCheckedIngredient, meal.idDrink]);
+
+  useEffect(() => {
+    const localIngredients = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const obj = {
+      ...localIngredients,
+      cocktails: {
+        [meal.idDrink]: [...checkedIngredient],
+      },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+  }, [checkedIngredient, meal.idDrink]);
+
   useEffect(() => {
     const listIngredients = Object.keys(meal)
       .filter((item) => item.includes('Ingredient'))
@@ -24,9 +42,9 @@ function IngredientsStep({ meal }) {
   const handleCheck = ({ target }) => {
     let checkedList = [...checkedIngredient];
     if (target.checked) {
-      checkedList = [...checkedIngredient, target.id];
+      checkedList = [...checkedIngredient, target.name];
     } else {
-      const removeIngredient = checkedIngredient.filter((item) => item !== target.id);
+      const removeIngredient = checkedIngredient.filter((item) => item !== target.name);
       checkedList = [...removeIngredient];
     }
     setCheckedIngredient(checkedList);
@@ -42,16 +60,20 @@ function IngredientsStep({ meal }) {
           >
             <label
               htmlFor={ ingredient }
+              data-testid={ `${index}-ingredient-step` }
             >
               <input
                 type="checkbox"
-                id={ ingredient }
-                data-testid={ `${index}-ingredient-step` }
+                name={ ingredient }
                 onChange={ handleCheck }
+                checked={
+                  checkedIngredient.includes(ingredient) ? checked : !checked
+                }
               />
               <span
                 className={
-                  checkedIngredient.includes(ingredient) && 'checked-ingredient'
+                  checkedIngredient.includes(ingredient)
+                    ? 'checked-ingredient' : 'non-checked'
                 }
               >
                 {ingredient}
