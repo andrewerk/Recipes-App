@@ -12,29 +12,31 @@ function ButtonFavorite({ testid }) {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   useEffect(() => {
-    if (actualFood.idMeal) {
-      const obj = {
-        id: actualFood.idMeal,
-        type: 'food',
-        nationality: actualFood.strArea,
-        category: actualFood.strCategory,
-        alcoholicOrNot: '',
-        name: actualFood.strMeal,
-        image: actualFood.strMealThumb,
-      };
-      setObjFood(obj);
-    }
-    if (actualFood.idDrink) {
-      const obj = {
-        id: actualFood.idDrink,
-        type: 'drink',
-        nationality: '',
-        category: actualFood.strCategory,
-        alcoholicOrNot: actualFood.strAlcoholic,
-        name: actualFood.strDrink,
-        image: actualFood.strDrinkThumb,
-      };
-      setObjFood(obj);
+    if (actualFood) {
+      if (actualFood.idMeal) {
+        const obj = {
+          id: actualFood.idMeal,
+          type: 'food',
+          nationality: actualFood.strArea,
+          category: actualFood.strCategory,
+          alcoholicOrNot: '',
+          name: actualFood.strMeal,
+          image: actualFood.strMealThumb,
+        };
+        setObjFood(obj);
+      }
+      if (actualFood.idDrink) {
+        const obj = {
+          id: actualFood.idDrink,
+          type: 'drink',
+          nationality: '',
+          category: actualFood.strCategory,
+          alcoholicOrNot: actualFood.strAlcoholic,
+          name: actualFood.strDrink,
+          image: actualFood.strDrinkThumb,
+        };
+        setObjFood(obj);
+      }
     }
   }, [actualFood]);
 
