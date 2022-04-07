@@ -2,7 +2,6 @@ import React from 'react';
 import { string } from 'prop-types';
 import ButtonFavorite from './ButtonFavorite';
 import ButtonShare from './ButtonShare';
-// import RecipesContext from '../context/RecipesContext';
 
 function TopRecipe({ title, thumb, category }) {
   return (
