@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { object } from 'prop-types';
 import '../css/IngredientSteps.css';
+import RecipesContext from '../context/RecipesContext';
 
 function IngredientsStep({ meal }) {
   const [checkboxList, setCheckboxList] = useState([]);
   const [checkedIngredient, setCheckedIngredient] = useState([]);
   const [checked] = useState(true);
+  const { setFinishButton } = useContext(RecipesContext);
 
   useEffect(() => {
     let getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -58,7 +60,10 @@ function IngredientsStep({ meal }) {
       },
     };
     localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
-  }, [checkedIngredient, meal.idDrink]);
+    if (checkboxList.length === checkedIngredient.length) {
+      setFinishButton(false);
+    } else setFinishButton(true);
+  }, [checkboxList.length, checkedIngredient, meal.idDrink, setFinishButton]);
 
   useEffect(() => {
     const listIngredients = Object.keys(meal)

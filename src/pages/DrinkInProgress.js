@@ -5,6 +5,7 @@ import TopRecipe from '../components/TopRecipe';
 import IngredientsStep from '../components/IngredientSteps';
 import Instructions from '../components/Instructions';
 import RecipesContext from '../context/RecipesContext';
+import FinishButton from '../components/FinishButton';
 
 function DrinkInProgress() {
   const { id } = useParams();
@@ -33,12 +34,7 @@ function DrinkInProgress() {
 
       <Instructions instructions={ data?.drinks[0].strInstructions } />
 
-      <button
-        data-testid="finish-recipe-btn"
-        type="button"
-      >
-        Finish Recipe
-      </button>
+      <FinishButton />
     </div>
   );
 }
