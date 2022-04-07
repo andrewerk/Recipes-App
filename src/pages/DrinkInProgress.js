@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import TopRecipe from '../components/TopRecipe';
@@ -9,8 +9,15 @@ import RecipesContext from '../context/RecipesContext';
 function DrinkInProgress() {
   const { id } = useParams();
   const { data } = useFetch('cocktail', 'lookup', '?i=', id);
-  const { setClipboard } = useContext(RecipesContext);
-  setClipboard(`/drinks/${id}`);
+  const { setClipboard, setActualFood } = useContext(RecipesContext);
+
+  useEffect(() => {
+    setClipboard(`/drinks/${id}`);
+  }, [id, setClipboard]);
+
+  useEffect(() => {
+    setActualFood(data?.drinks[0]);
+  }, [data, setActualFood]);
 
   return (
     <div>
