@@ -8,15 +8,52 @@ function IngredientsStep({ meal }) {
   const [checked] = useState(true);
 
   useEffect(() => {
-    const localIngredients = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    setCheckedIngredient(localIngredients.cocktails[meal.idDrink]);
-  }, [setCheckedIngredient, meal.idDrink]);
+    let getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!getInProgressRecipes) {
+      const obj = {
+        cocktails: {
+          [meal.idDrink]: [],
+        },
+        meals: {},
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+      getInProgressRecipes = obj;
+    }
+    if (!getInProgressRecipes.cocktails) {
+      const obj = {
+        ...getInProgressRecipes,
+        cocktails: {
+          ...getInProgressRecipes.cocktails,
+          [meal.idDrink]: [],
+        },
+      };
+      getInProgressRecipes = obj;
+      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+      setCheckedIngredient(getInProgressRecipes.cocktails[meal.idDrink]);
+    }
+
+    if (!getInProgressRecipes.cocktails[meal.idDrink]) {
+      const obj = {
+        ...getInProgressRecipes,
+        cocktails: {
+          ...getInProgressRecipes.cocktails,
+          [meal.idDrink]: [],
+        },
+      };
+      getInProgressRecipes = obj;
+      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+      setCheckedIngredient(getInProgressRecipes.cocktails[meal.idDrink]);
+    }
+
+    setCheckedIngredient(getInProgressRecipes.cocktails[meal.idDrink]);
+  }, [meal.idDrink]);
 
   useEffect(() => {
-    const localIngredients = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     const obj = {
-      ...localIngredients,
+      ...getInProgressRecipes,
       cocktails: {
+        ...getInProgressRecipes.cocktails,
         [meal.idDrink]: [...checkedIngredient],
       },
     };
@@ -67,12 +104,12 @@ function IngredientsStep({ meal }) {
                 name={ ingredient }
                 onChange={ handleCheck }
                 checked={
-                  checkedIngredient.includes(ingredient) ? checked : !checked
+                  checkedIngredient?.includes(ingredient) ? checked : !checked
                 }
               />
               <span
                 className={
-                  checkedIngredient.includes(ingredient)
+                  checkedIngredient?.includes(ingredient)
                     ? 'checked-ingredient' : 'non-checked'
                 }
               >

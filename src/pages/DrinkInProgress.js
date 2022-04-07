@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import TopRecipe from '../components/TopRecipe';
@@ -8,20 +8,6 @@ import Instructions from '../components/Instructions';
 function DrinkInProgress() {
   const { id } = useParams();
   const { data } = useFetch('cocktail', 'lookup', '?i=', id);
-
-  useEffect(() => {
-    if (localStorage.getItem('inProgressRecipes') === null) {
-      const inProgressRecipes = localStorage.getItem('inProgressRecipes');
-      const obj = {
-        ...inProgressRecipes,
-        cocktails: {
-          [id]: [],
-        },
-      };
-
-      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
-    }
-  }, [id]);
 
   return (
     <div>
