@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import TopRecipe from '../components/TopRecipe';
-import IngredientsStep from '../components/IngredientSteps';
+import IngredientsStepsFoods from '../components/IngredientStepsFood';
 import Instructions from '../components/Instructions';
 
 function FoodInProgress() {
@@ -19,7 +19,7 @@ function FoodInProgress() {
       />
 
       {data
-      && <IngredientsStep meal={ data.meals[0] } />}
+      && <IngredientsStepsFoods meal={ data.meals[0] } />}
 
       <Instructions instructions={ data?.meals[0].strInstructions } />
 

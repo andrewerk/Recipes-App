@@ -1,95 +1,131 @@
-// import React, { useEffect, useState } from 'react';
-// import { object } from 'prop-types';
-// import '../css/IngredientSteps.css';
+import React, { useEffect, useState } from 'react';
+import { object } from 'prop-types';
+import '../css/IngredientSteps.css';
 
-// function IngredientsStepFood({ meal }) {
-//   const [checkboxList, setCheckboxList] = useState([]);
-//   const [checkedIngredient, setCheckedIngredient] = useState([]);
-//   const [checked] = useState(true);
+function IngredientsStepsFood({ meal }) {
+  const [checkboxList, setCheckboxList] = useState([]);
+  const [checkedIngredient, setCheckedIngredient] = useState([]);
+  const [checked] = useState(true);
 
-//   useEffect(() => {
-//     const localIngredients = JSON.parse(localStorage.getItem('inProgressRecipes'));
-//     console.log(localIngredients);
-//     setCheckedIngredient(localIngredients.meals[meal.idMeal]);
-//   }, [setCheckedIngredient, meal.idMeal]);
+  useEffect(() => {
+    let getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!getInProgressRecipes) {
+      const obj = {
+        cocktails: {},
+        meals: {
+          [meal.idMeal]: [],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+      getInProgressRecipes = obj;
+    }
+    if (!getInProgressRecipes.meals) {
+      const obj = {
+        ...getInProgressRecipes,
+        meals: {
+          ...getInProgressRecipes.meals,
+          [meal.idMeal]: [],
+        },
+      };
+      getInProgressRecipes = obj;
+      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+      setCheckedIngredient(getInProgressRecipes.meals[meal.idMeal]);
+    }
 
-//   useEffect(() => {
-//     const localIngredients = JSON.parse(localStorage.getItem('inProgressRecipes'));
-//     const obj = {
-//       ...localIngredients,
-//       meals: {
-//         [meal.idMeal]: [...checkedIngredient],
-//       },
-//     };
-//     localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
-//   }, [checkedIngredient, meal.idMeal]);
+    if (!getInProgressRecipes.meals[meal.idMeal]) {
+      const obj = {
+        ...getInProgressRecipes,
+        meals: {
+          ...getInProgressRecipes.meals,
+          [meal.idMeal]: [],
+        },
+      };
+      getInProgressRecipes = obj;
+      localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+      setCheckedIngredient(getInProgressRecipes.meals[meal.idMeal]);
+    }
 
-//   useEffect(() => {
-//     const listIngredients = Object.keys(meal)
-//       .filter((item) => item.includes('Ingredient'))
-//       .map((key) => meal[key])
-//       .filter((item) => item !== '' && item !== null);
+    setCheckedIngredient(getInProgressRecipes.meals[meal.idMeal]);
+  }, [meal.idMeal]);
 
-//     const listMeasures = Object.keys(meal)
-//       .filter((item) => item.includes('Measure'))
-//       .map((key) => meal[key])
-//       .filter((item) => item !== '' && item !== null);
+  useEffect(() => {
+    const getInProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const obj = {
+      ...getInProgressRecipes,
+      meals: {
+        ...getInProgressRecipes.meals,
+        [meal.idMeal]: [...checkedIngredient],
+      },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(obj));
+  }, [checkedIngredient, meal.idMeal]);
 
-//     const list = listIngredients.map((item, index) => `${item} - ${listMeasures[index]}`);
+  useEffect(() => {
+    const listIngredients = Object.keys(meal)
+      .filter((item) => item.includes('Ingredient'))
+      .map((key) => meal[key])
+      .filter((item) => item !== '' && item !== null);
 
-//     setCheckboxList(list);
-//   }, [meal]);
+    const listMeasures = Object.keys(meal)
+      .filter((item) => item.includes('Measure'))
+      .map((key) => meal[key])
+      .filter((item) => item !== '' && item !== null);
 
-//   const handleCheck = ({ target }) => {
-//     let checkedList = [...checkedIngredient];
-//     if (target.checked) {
-//       checkedList = [...checkedIngredient, target.name];
-//     } else {
-//       const removeIngredient = checkedIngredient.filter((item) => item !== target.name);
-//       checkedList = [...removeIngredient];
-//     }
-//     setCheckedIngredient(checkedList);
-//   };
+    const list = listIngredients.map((item, index) => `${item} - ${listMeasures[index]}`);
 
-//   return (
-//     <>
-//       <h2>Ingredients</h2>
-//       <ul>
-//         {checkboxList.map((ingredient, index) => (
-//           <li
-//             key={ ingredient }
-//           >
-//             <label
-//               htmlFor={ ingredient }
-//               data-testid={ `${index}-ingredient-step` }
-//             >
-//               <input
-//                 type="checkbox"
-//                 name={ ingredient }
-//                 onChange={ handleCheck }
-//                 checked={
-//                   checkedIngredient.includes(ingredient) ? checked : !checked
-//                 }
-//               />
-//               <span
-//                 className={
-//                   checkedIngredient.includes(ingredient)
-//                     ? 'checked-ingredient' : 'non-checked'
-//                 }
-//               >
-//                 {ingredient}
-//               </span>
-//             </label>
-//           </li>
-//         ))}
-//       </ul>
-//     </>
+    setCheckboxList(list);
+  }, [meal]);
 
-//   );
-// }
+  const handleCheck = ({ target }) => {
+    let checkedList = [...checkedIngredient];
+    if (target.checked) {
+      checkedList = [...checkedIngredient, target.name];
+    } else {
+      const removeIngredient = checkedIngredient.filter((item) => item !== target.name);
+      checkedList = [...removeIngredient];
+    }
+    setCheckedIngredient(checkedList);
+  };
 
-// export default IngredientsStepFood;
+  return (
+    <>
+      <h2>Ingredients</h2>
+      <ul>
+        {checkboxList.map((ingredient, index) => (
+          <li
+            key={ ingredient }
+          >
+            <label
+              htmlFor={ ingredient }
+              data-testid={ `${index}-ingredient-step` }
+            >
+              <input
+                type="checkbox"
+                name={ ingredient }
+                onChange={ handleCheck }
+                checked={
+                  checkedIngredient?.includes(ingredient) ? checked : !checked
+                }
+              />
+              <span
+                className={
+                  checkedIngredient?.includes(ingredient)
+                    ? 'checked-ingredient' : 'non-checked'
+                }
+              >
+                {ingredient}
+              </span>
+            </label>
+          </li>
+        ))}
+      </ul>
+    </>
 
-// IngredientsStep.propTypes = {
-//   meal: object,
-// }.isRequired;
+  );
+}
+
+export default IngredientsStepsFood;
+
+IngredientsStepsFood.propTypes = {
+  meals: object,
+}.isRequired;
