@@ -1,0 +1,8 @@
+.checked-ingredient {
+  text-decoration: line-through;
+}
+
+
+.non-checked {
+  text-decoration: none;
+}

@@ -21,10 +21,10 @@ function RecipesProvider({ children }) {
   const [actualFood, setActualFood] = useState({});
   const { data: categoriesMeal } = useFetch('meal', 'list', '?c=', 'list');
   const { data: categoriesDrinks } = useFetch('cocktail', 'list', '?c=', 'list');
-
   const favoriteRecipesFromLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const [filteredFavoriteRecipes,
     setFilteredFavoriteRecipes] = useState(favoriteRecipesFromLocal);
+  const [finishButton, setFinishButton] = useState(true);
 
   return (
     <RecipesContext.Provider
@@ -39,6 +39,7 @@ function RecipesProvider({ children }) {
         setClipboard,
         setActualFood,
         setFilteredFavoriteRecipes,
+        setFinishButton,
         redirected,
         errorState,
         isLoading,
@@ -51,6 +52,7 @@ function RecipesProvider({ children }) {
         actualFood,
         favoriteRecipesFromLocal,
         filteredFavoriteRecipes,
+        finishButton,
       } }
     >
       { children }
