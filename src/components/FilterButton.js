@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from '../context/RecipesContext';
+import '../css/components/FilterButton.css';
 
 function FilterButton({ type }) {
   const {
@@ -37,7 +38,7 @@ function FilterButton({ type }) {
   }, [categoriesDrinks, categoriesMeal, type]);
 
   return (
-    <div>
+    <div className="container-fluid filter-button">
       { categories[type === 'meal' ? 'meals' : 'drinks']
         .slice(0, limit).concat({ strCategory: 'All' }).map((category) => (
           <button
@@ -46,6 +47,7 @@ function FilterButton({ type }) {
             data-testid={ `${category.strCategory}-category-filter` }
             name={ category.strCategory }
             key={ category.strCategory }
+            className="m-0"
           >
             { category.strCategory }
           </button>

@@ -1,0 +1,37 @@
+.filter-button {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.filter-button button {
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: white;
+  background-color: transparent;
+  letter-spacing: 0.1rem;
+  border: none;
+  position: relative;
+}
+
+.filter-button button::after {
+  content: '';
+  position: absolute;
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: 0.3s;
+}
+
+.filter-button button:hover::after {
+  width: 100%;
+}
