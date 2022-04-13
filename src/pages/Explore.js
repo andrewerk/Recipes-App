@@ -3,6 +3,7 @@ import { object } from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 import Footer from '../components/Footer';
+import '../css/pages/Explore.css';
 
 function Explore({ history, location }) {
   const [type, setType] = useState({});
@@ -27,22 +28,26 @@ function Explore({ history, location }) {
     <div>
       { pathname === '/explore'
     && (
-      <section>
+      <section className="explore">
+        <div className="bg-fixed" />
+        <div className="bg-blur" />
         <HeaderWithoutSearch title="Explore" />
-        <button
-          onClick={ () => handleClick(exploreFoods) }
-          type="button"
-          data-testid="explore-foods"
-        >
-          Explore Foods
-        </button>
-        <button
-          onClick={ () => handleClick(exploreDrinks) }
-          type="button"
-          data-testid="explore-drinks"
-        >
-          Explore Drinks
-        </button>
+        <div className="btn-container">
+          <button
+            onClick={ () => handleClick(exploreFoods) }
+            type="button"
+            data-testid="explore-foods"
+          >
+            Explore Foods
+          </button>
+          <button
+            onClick={ () => handleClick(exploreDrinks) }
+            type="button"
+            data-testid="explore-drinks"
+          >
+            Explore Drinks
+          </button>
+        </div>
       </section>
     )}
       { (pathname === exploreFoods || pathname === exploreDrinks)
