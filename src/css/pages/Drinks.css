@@ -1,0 +1,20 @@
+.drinks .bg-fixed {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('../../assets/bg-drinks.jpg');
+  background-size: cover;
+  z-index: -1;
+}
+
+.drinks .bg-blur {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(3px);
+  z-index: -1;
+}

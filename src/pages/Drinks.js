@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import RecipesContext from '../context/RecipesContext';
 import RecipeCard from '../components/RecipeCard';
 import FilterButton from '../components/FilterButton';
+import '../css/pages/Drinks.css';
 
 const phrase = 'Sorry, we haven\'t found any recipes for these filters.';
 
@@ -44,7 +45,9 @@ function Drinks(props) {
   //     global.alert(phrase);
   //   }
   return (
-    <div>
+    <div className="drinks">
+      <div className="bg-fixed" />
+      <div className="bg-blur" />
       <div>
         <Header title="Drinks" />
       </div>
