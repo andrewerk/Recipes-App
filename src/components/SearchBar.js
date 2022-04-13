@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipesContext from '../context/RecipesContext';
+import '../css/components/SearchBar.css';
 
 function SearchBar({ type }) {
   const {
@@ -37,62 +38,72 @@ function SearchBar({ type }) {
   };
 
   return (
-    <form type="">
-      <label
-        htmlFor="ingredients"
-      >
-        Ingredients
+    <form
+      type=""
+      className="search-bar"
+    >
+      <div className="d-flex align-items-center">
+        <label
+          htmlFor="ingredients"
+        >
+          <input
+            type="radio"
+            id="ingredients"
+            name="ingredients"
+            value="ingredients"
+            checked={ radioFilter === 'ingredients' }
+            data-testid="ingredient-search-radio"
+            onChange={ () => setRadioFilter('ingredients') }
+          />
+          Ingredients
+        </label>
+        <label
+          htmlFor="name"
+        >
+          <input
+            type="radio"
+            id="name"
+            name="name"
+            value="name"
+            checked={ radioFilter === 'name' }
+            data-testid="name-search-radio"
+            onChange={ () => setRadioFilter('name') }
+          />
+          Name
+        </label>
+        <label
+          htmlFor="first-letter"
+        >
+          <input
+            type="radio"
+            id="first-letter"
+            name="first-letter"
+            value="first-letter"
+            checked={ radioFilter === firstLetter }
+            data-testid="first-letter-search-radio"
+            onChange={ () => setRadioFilter(firstLetter) }
+          />
+          First Letter
+        </label>
+      </div>
+      <div className="d-flex">
         <input
-          type="radio"
-          id="ingredients"
-          name="ingredients"
-          value="ingredients"
-          checked={ radioFilter === 'ingredients' }
-          data-testid="ingredient-search-radio"
-          onChange={ () => setRadioFilter('ingredients') }
+          type="text"
+          data-testid="search-input"
+          value={ input }
+          onChange={ ({ target }) => setInput(target.value) }
         />
-      </label>
-      <label
-        htmlFor="name"
-      >
-        Name
-        <input
-          type="radio"
-          id="name"
-          name="name"
-          value="name"
-          checked={ radioFilter === 'name' }
-          data-testid="name-search-radio"
-          onChange={ () => setRadioFilter('name') }
-        />
-      </label>
-      <label
-        htmlFor="first-letter"
-      >
-        First Letter
-        <input
-          type="radio"
-          id="first-letter"
-          name="first-letter"
-          value="first-letter"
-          checked={ radioFilter === firstLetter }
-          data-testid="first-letter-search-radio"
-          onChange={ () => setRadioFilter(firstLetter) }
-        />
-      </label>
-      <input
-        type="text"
-        data-testid="search-input"
-        value={ input }
-        onChange={ ({ target }) => setInput(target.value) }
-      />
-      <button
-        type="submit"
-        onClick={ (e) => handleClick(e) }
-        data-testid="exec-search-btn"
-      >
-        Search
-      </button>
+        <div className="input-group-append">
+          <button
+            type="submit"
+            onClick={ (e) => handleClick(e) }
+            data-testid="exec-search-btn"
+            className="btn btn-outline-dark "
+          >
+            Search
+          </button>
+        </div>
+      </div>
     </form>
   );
 }
