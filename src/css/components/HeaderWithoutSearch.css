@@ -1,0 +1,17 @@
+.header-without-search {
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.header-without-search h1 {
+  font-family: 'Dancing Script', cursive;
+  margin: 0;
+}
+
+.header-without-search input {
+  width: 35px;
+  height: 35px;
+}

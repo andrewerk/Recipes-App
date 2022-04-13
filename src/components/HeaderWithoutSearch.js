@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
-import '../css/Header.css';
+import '../css/components/HeaderWithoutSearch.css';
 
 function HeaderWithoutSearch({ title }) {
   const history = useHistory();
   return (
-    <header>
+    <header className="header-without-search">
       <input
         className="header-btn"
         data-testid="profile-top-btn"
@@ -19,6 +19,7 @@ function HeaderWithoutSearch({ title }) {
       <h1 className="heading-without-search" data-testid="page-title">
         {title}
       </h1>
+      <span />
     </header>
   );
 }
