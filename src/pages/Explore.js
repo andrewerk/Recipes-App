@@ -52,20 +52,23 @@ function Explore({ history, location }) {
     )}
       { (pathname === exploreFoods || pathname === exploreDrinks)
     && (
-      <section>
+      <section className="explore">
+        <div className="bg-fixed" />
+        <div className="bg-blur" />
         <HeaderWithoutSearch
           title={
             pathname === exploreFoods ? 'Explore Foods' : 'Explore Drinks'
           }
         />
-        <button
-          onClick={ () => handleClick(`${pathname}/ingredients`) }
-          type="button"
-          data-testid="explore-by-ingredient"
-        >
-          By Ingredient
-        </button>
-        { pathname === exploreFoods
+        <div className="btn-container">
+          <button
+            onClick={ () => handleClick(`${pathname}/ingredients`) }
+            type="button"
+            data-testid="explore-by-ingredient"
+          >
+            By Ingredient
+          </button>
+          { pathname === exploreFoods
         && (
           <button
             onClick={ () => handleClick(`${pathname}/nationalities`) }
@@ -75,13 +78,14 @@ function Explore({ history, location }) {
             By Nationality
           </button>
         )}
-        <button
-          onClick={ handleClickRandom }
-          type="button"
-          data-testid="explore-surprise"
-        >
-          Surprise me!
-        </button>
+          <button
+            onClick={ handleClickRandom }
+            type="button"
+            data-testid="explore-surprise"
+          >
+            Surprise me!
+          </button>
+        </div>
       </section>
     )}
       <Footer />
