@@ -6,6 +6,7 @@ import IngredientCard from '../components/IngredientCard';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 import Footer from '../components/Footer';
 import RecipesContext from '../context/RecipesContext';
+import '../css/pages/ExploreByIngredients.css';
 
 function ExploreByIngredients({ location }) {
   const [type, setType] = useState('');
@@ -44,7 +45,9 @@ function ExploreByIngredients({ location }) {
     } else { history.push('/drinks'); }
   };
   return (
-    <div>
+    <div className="explore-by-ingredients">
+      <div className="bg-fixed" />
+      <div className="bg-blur" />
       <HeaderWithoutSearch title="Explore Ingredients" />
       {data
         && data[objKey].slice(0, maxIngredients).map((ingredient, index) => (

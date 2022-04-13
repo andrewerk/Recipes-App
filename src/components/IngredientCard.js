@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../css/components/IngredientCard.css';
 
 function IngredientCard({ name, type, index }) {
   return (
-    <div data-testid={ `${index}-ingredient-card` }>
+    <div
+      data-testid={ `${index}-ingredient-card` }
+      className="ingredient-card"
+    >
       <img
         src={ `https://www.the${type}db.com/images/ingredients/${name}-Small.png` }
         alt="ingredient-foto"

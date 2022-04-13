@@ -1,0 +1,34 @@
+.explore-by-ingredients {
+  color: white;
+  padding-bottom: 4rem;
+}
+
+.explore-by-ingredients .bg-fixed {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('../../assets/bg-brick.jpg');
+  background-size: cover;
+  z-index: -1;
+}
+
+.explore-by-ingredients .bg-blur {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(0px);
+  z-index: -1;
+}
+
+.explore-by-ingredients button {
+  position: relative;
+  padding: 0;
+  border: none;
+  outline: none;
+  margin-bottom: 1rem;
+  background: transparent;
+}
