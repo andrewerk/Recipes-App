@@ -1,25 +1,25 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
-import '../css/Header.css';
+import profileIcon from '../images/profile-icon.svg';
+import searchIcon from '../images/search-icon.svg';
 import RecipesContext from '../context/RecipesContext';
+import '../css/components/Header.css';
 
 function Header({ title }) {
   const { setSearchBar, searchBar } = useContext(RecipesContext);
   const history = useHistory();
   return (
-    <header>
+    <header className="header">
       <input
-        className="header-btn"
         data-testid="profile-top-btn"
         type="image"
         src={ profileIcon }
         alt="profile icon"
         onClick={ () => history.push('/profile') }
+        className="btn-profile"
       />
-      <h1 data-testid="page-title">
+      <h1 className="m-0" data-testid="page-title">
         {title}
       </h1>
       <input
@@ -28,6 +28,7 @@ function Header({ title }) {
         src={ searchIcon }
         alt="search icon"
         onClick={ () => setSearchBar(!searchBar) }
+        className="btn-search"
       />
     </header>
   );
