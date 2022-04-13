@@ -1,0 +1,74 @@
+.menuList {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.menuList li {
+  list-style: none;
+  width: 100px;
+  z-index: 1;
+}
+
+.menuList a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menuList .icon {
+  font-size: 2.5rem;
+  line-height: 95px;
+  color: black;
+  transition: 0.5s;
+}
+
+.menuList li:hover .icon {
+  color: #ffc107;
+  transform: translateY(-30px);
+}
+
+.menuList .text {
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  color: black;
+  opacity: 0;
+}
+
+.menuList a,
+.menuList a:hover {
+  text-decoration: none;
+}
+
+.menuList li:hover .text {
+  transform: translateY(-60px);
+  opacity: 1;
+}
+
+.menuList .indicator {
+  position: absolute;
+  background: white;
+  width: 100px;
+  height: 100px;
+  top: 100%;
+  transition: 0.5s;
+}
+
+.menuList li:nth-child(1):hover ~ .indicator {
+  color: #ffc107;
+  transform: translateX(calc(100% * 0));
+  top: -1rem;
+}
+.menuList li:nth-child(2):hover ~ .indicator {
+  color: #ffc107;
+  transform: translateX(calc(100% * 1));
+  top: -1rem;
+}
+.menuList li:nth-child(3):hover ~ .indicator {
+  color: #ffc107;
+  transform: translateX(calc(100% * 2));
+  top: -1rem;
+}
