@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import RecipesContext from '../context/RecipesContext';
-import '../css/Footer.css';
+import '../css/components/Footer.css';
 
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
@@ -24,7 +24,7 @@ function Footer() {
     history.push('/drinks');
   };
   return (
-    <footer data-testid="footer">
+    <footer className="footer" data-testid="footer">
       <input
         className="drink-footer-btn"
         data-testid="drinks-bottom-btn"
