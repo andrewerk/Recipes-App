@@ -58,19 +58,24 @@ function Foods(props) {
       />}
       { categoriesMeal && <FilterButton type="meal" /> }
       { isLoading && <h2>Loading</h2>}
-      { (searchResult && searchResult.meals) && ((searchResult.meals.length === 1
+      <div className="container p-0">
+        <div className="row">
+          { (searchResult && searchResult.meals) && ((searchResult.meals.length === 1
       && !redirected)
-        ? history.push(`/foods/${searchResult.meals[0].idMeal}`)
-        : searchResult.meals.slice(0, maxIngredients).map((recipe, index) => (
-          <RecipeCard
-            { ...props }
-            key={ recipe.idMeal }
-            name={ recipe.strMeal }
-            imgSrc={ recipe.strMealThumb }
-            index={ index }
-            id={ recipe.idMeal }
-            type="foods"
-          />)))}
+            ? history.push(`/foods/${searchResult.meals[0].idMeal}`)
+            : searchResult.meals.slice(0, maxIngredients).map((recipe, index) => (
+              <RecipeCard
+                { ...props }
+                key={ recipe.idMeal }
+                name={ recipe.strMeal }
+                imgSrc={ recipe.strMealThumb }
+                index={ index }
+                id={ recipe.idMeal }
+                type="foods"
+              />)))}
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
