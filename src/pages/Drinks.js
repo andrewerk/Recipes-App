@@ -56,19 +56,23 @@ function Drinks(props) {
       />}
       { categoriesDrinks && <FilterButton type="cocktail" /> }
       { isLoading && <h2>Loading</h2>}
-      { (searchResult && searchResult.drinks) && ((searchResult.drinks.length === 1
+      <div className="container p-0">
+        <div className="row">
+          { (searchResult && searchResult.drinks) && ((searchResult.drinks.length === 1
       && !redirected)
-        ? history.push(`/drinks/${searchResult.drinks[0].idDrink}`)
-        : searchResult.drinks.slice(0, maxIngredients).map((recipe, index) => (
-          <RecipeCard
-            { ...props }
-            key={ recipe.idDrink }
-            name={ recipe.strDrink }
-            imgSrc={ recipe.strDrinkThumb }
-            index={ index }
-            id={ recipe.idDrink }
-            type="drinks"
-          />)))}
+            ? history.push(`/drinks/${searchResult.drinks[0].idDrink}`)
+            : searchResult.drinks.slice(0, maxIngredients).map((recipe, index) => (
+              <RecipeCard
+                { ...props }
+                key={ recipe.idDrink }
+                name={ recipe.strDrink }
+                imgSrc={ recipe.strDrinkThumb }
+                index={ index }
+                id={ recipe.idDrink }
+                type="drinks"
+              />)))}
+        </div>
+      </div>
       <Footer />
     </div>
   );
