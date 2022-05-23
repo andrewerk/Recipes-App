@@ -20,4 +20,19 @@ https://www.themealdb.com/
 
 https://www.thecocktaildb.com/api.php
 
+# WHAT IS TO BE DONE?
+
+The CSS is not yet ready, as you may see in the prototype. Some features, mostly about saving recipes in progress are to be fixed.
+
+# GROUP CREDITS
+
+This project was developed with other three colegues:
+
+-> gustavoformiga;
+-> @fabiosabah;
+-> @felipe-ac.
+
+My part in the project was mostly working with the API's request and providing the initial and explore pages features.
+
+
   
